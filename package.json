@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client",
+    "e2e"
+  ],
+  "scripts": {
+    "build:client": "yarn workspace pizza-reviewer-client build",
+    "dev": "yarn workspace pizza-reviewer-server dev",
+    "dev:debug": "yarn workspace pizza-reviewer-server dev:debug",
+    "heroku-postbuild": "yarn workspace pizza-reviewer-client build",
+    "start": "yarn workspace pizza-reviewer-server start",
+    "dev:cypress": "yarn workspace pizza-reviewer-server dev:e2e",
+    "e2e:open": "yarn workspace pizza-reviewer-e2e e2e:open",
+    "e2e:run": "yarn workspace pizza-reviewer-e2e e2e:run"
+  },
+  "engines": {
+    "node": "^16.18"
+  }
+}
