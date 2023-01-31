@@ -15,14 +15,13 @@ const PizzaPlaceList = (props) => {
         } catch(error) {
             console.error(`Error in fetch: ${error.message}`)
         }
-
     }
 
     useEffect(() => {
         getPizzaPlaces()
     }, [])
 
-    const pizzaPlaceReact = pizzaPlacesList.map( pizzaPlace => {
+    const pizzaPlaceReact = pizzaPlacesList.map(pizzaPlace => {
         return (
             <PizzaPlaceListItem pizzaPlace={pizzaPlace} key={pizzaPlace.id}/>
         )
