@@ -12,3 +12,19 @@
   -moz-tab-size: 4;
   tab-size: 4;
 }
+
+.list-logo {
+  max-height: 3rem;
+  display: block;
+  margin: 0 auto;
+}
+
+.pizza-list {
+  max-width: 75%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pizza-list-item {
+  list-style-type: none;
+}
