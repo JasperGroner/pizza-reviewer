@@ -23,12 +23,17 @@ const App = (props) => {
     fetchCurrentUser()
   }, [])
 
+  let message = ""
+  if(currentUser){
+    message = `${currentUser.firstName}`
+  }
+  
   return (
     <Router>
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <h2>Hello from react</h2>
+          <h2>Hello from react {message}</h2>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

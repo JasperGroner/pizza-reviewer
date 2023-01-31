@@ -26,11 +26,13 @@ class User extends uniqueFunc(Model) {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["email"],
+      required: ["email", "firstName", "lastName"],
 
       properties: {
         email: { type: "string" },
         cryptedPassword: { type: "string" },
+        firstName: { type: 'string', minLength: 1 },
+        lastName: { type: 'string', minLength: 1 }
       },
     };
   }
