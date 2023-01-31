@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-
-
+import PizzaPlaceListItem from './PizzaPlaceListItem.js'
 
 const PizzaPlaceList = (props) => {
     const [pizzaPlacesList, setPizzaPlacesList] = useState([])
@@ -26,10 +24,7 @@ const PizzaPlaceList = (props) => {
 
     const pizzaPlaceReact = pizzaPlacesList.map( pizzaPlace => {
         return (
-            <li className="pizza-list-item" key={pizzaPlace.id}> 
-                <img className="list-logo" src={pizzaPlace.imageUrl} alt="restaurant logo"/>
-                <Link to={`/pizza-places/${pizzaPlace.id}/`}>{pizzaPlace.name}</Link>
-            </li>
+            <PizzaPlaceListItem pizzaPlace={pizzaPlace} key={pizzaPlace.id}/>
         )
     })
 

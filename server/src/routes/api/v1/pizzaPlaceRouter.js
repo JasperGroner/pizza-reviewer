@@ -7,7 +7,7 @@ const pizzaPlaceRouter = new express.Router()
 pizzaPlaceRouter.get("/", async (req, res) => {
     try {
         const pizzaPlaces = await PizzaPlace.query()
-        const serializedPizzaPlaces = pizzaPlaces.map(pizzaPlace => PizzaPlaceSerializer.getSummary(pizzaPlace))
+        const serializedPizzaPlaces = PizzaPlaceSerializer.getSummary(pizzaPlaces)
         res.status(200).json({pizzaPlaces: serializedPizzaPlaces})
     } catch(error) {
         res.status(500).json({ errors: error})
