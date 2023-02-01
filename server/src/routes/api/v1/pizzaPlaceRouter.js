@@ -2,7 +2,7 @@ import express from "express"
 import { PizzaPlace } from "../../../models/index.js"
 import PizzaPlaceSerializer from "../../../serializers/PizzaPlaceSerializer.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
-
+import { ValidationError } from "objection"
 const pizzaPlaceRouter = new express.Router()
 
 pizzaPlaceRouter.get("/", async (req, res) => {
@@ -18,15 +18,12 @@ pizzaPlaceRouter.get("/", async (req, res) => {
 pizzaPlaceRouter.post("/", async (req, res) => {
     const { body } = req
     const formInput = cleanUserInput(body)
-
-    try{
+    try {
         const newPizzaPlace = await PizzaPlace.query().insertAndFetch(formInput)
         return res.status(201).json({ newPizzaPlace })
     } catch(error) {
         if(error instanceof ValidationError) {
-            return res.status(422).json({
-                errors: error.data
-            })
+            return res.status(422).json({errors: error.data})
         }
         return res.status(500).json({ errors: error })
     }

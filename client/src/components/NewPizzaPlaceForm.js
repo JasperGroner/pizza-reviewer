@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import translateServerErrors from '../services/translateServerErrors.js'
 import ErrorList from '../components/layout/ErrorList.js'
+
 const NewPizzaPlaceForm = () => {
     
     const [newPizzaPlace, setNewPizzaPlace] = useState({
@@ -25,7 +26,6 @@ const NewPizzaPlaceForm = () => {
                 }),
                 body: JSON.stringify(newPizzaPlaceData)
             })
-            console.log(response)
             if(!response.ok) {
                 if(response.status === 422){
                     const body = await response.json()
@@ -35,16 +35,13 @@ const NewPizzaPlaceForm = () => {
                     throw new Error(`${response.status} (${response.statusText})`)
                 }
             } else {
-                const body = await response.json()
-                              
+                const body = await response.json()        
                 setShouldRedirect(true)
-               
             }
         } catch(error) {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
-
 
     const handleInputChange = (event) => {
         setNewPizzaPlace({
@@ -70,7 +67,7 @@ const NewPizzaPlaceForm = () => {
         })
     }
 
-    if(shouldRedirect) {
+    if (shouldRedirect) {
         return <Redirect push to="/pizza-places" />
     }
 
@@ -136,11 +133,9 @@ const NewPizzaPlaceForm = () => {
                 value={newPizzaPlace.imageUrl}
             />
         </label>
-
-        <div>
-            <input className='button' type='submit' value='Submit' />
-            <input className='button' type='button' value='Clear Form' onClick={clearForm}/>
-        </div>
+        
+        <input className='button' type='submit' value='Submit' />
+        <input className='button' type='button' value='Clear Form' onClick={clearForm}/>
         
     </form>
   )
