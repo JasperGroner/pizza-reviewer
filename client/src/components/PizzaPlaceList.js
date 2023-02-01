@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PizzaPlaceListItem from './PizzaPlaceListItem.js'
+import { Link } from 'react-router-dom'
 
 const PizzaPlaceList = (props) => {
     const [pizzaPlacesList, setPizzaPlacesList] = useState([])
@@ -31,6 +32,7 @@ const PizzaPlaceList = (props) => {
         <div className='pizza-list'>
             <h1>Pizza Place List</h1>
             <ul>{pizzaPlaceReact}</ul>
+            <Link to='/pizza-places/new'> Add New Pizza Place </Link>
         </div>
     )
 }
