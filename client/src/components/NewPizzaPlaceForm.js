@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import translateServerErrors from '../services/translateServerErrors.js'
-
+import ErrorList from '../components/layout/ErrorList.js'
 const NewPizzaPlaceForm = () => {
     
     const [newPizzaPlace, setNewPizzaPlace] = useState({
@@ -14,6 +14,7 @@ const NewPizzaPlaceForm = () => {
     })
     
     const [shouldRedirect, setShouldRedirect] = useState(false)
+    const [errors, setErrors] = useState({})
 
     const postNewPizzaPlace = async(newPizzaPlaceData) => {
         try {
@@ -75,7 +76,7 @@ const NewPizzaPlaceForm = () => {
 
   return (
     <form onSubmit={handleSubmit} >
-
+        <ErrorList errors={errors}/>
         <label htmlFor='name'>
             Name:
             <input 
