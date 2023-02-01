@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 const PizzaPlaceShow = props => {
-    const [pizzaPlace, setPizzaPlace] = useState({
-        name: "",
-        address: "",
-        phoneNumber: "",
-        website: "",
-        hours: "",
-        imageUrl: ""
-    })
+    const [pizzaPlace, setPizzaPlace] = useState({})
 
     const getPizzaPlace = async () => {
         const pizzaId = props.match.params.id
@@ -36,7 +29,7 @@ const PizzaPlaceShow = props => {
                     <p>Address: {pizzaPlace.address}</p>
                     <p>Phone Number: {pizzaPlace.phoneNumber}</p>
                     <p>Website: 
-                        <a href={pizzaPlace.website}> {pizzaPlace.website}</a>
+                        <a href={pizzaPlace.website} target="_blank"> {pizzaPlace.website}</a>
                     </p>
                     <p>Hours: {pizzaPlace.hours}</p>    
                 </div>
