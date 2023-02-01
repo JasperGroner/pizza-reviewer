@@ -105,46 +105,45 @@ const RegistrationForm = () => {
     <div className="grid-container">
       <h1>Register</h1>
       <form onSubmit={onSubmit}>
-        <div>
+        
           <label>First name
-            <input type="text"
-            name="firstName"
-            value={userPayload.firstName}
-            onChange={onInputChange}
+            <input 
+              type="text"
+              name="firstName"
+              value={userPayload.firstName}
+              onChange={onInputChange}
             />
             <FormError error={errors.firstName} />
           </label>
-        </div>
-        <div>
+        
+        
           <label>Last name
-            <input type="text"
-            name="lastName"
-            value={userPayload.lastName}
-            onChange={onInputChange}
+            <input 
+              type="text"
+              name="lastName"
+              value={userPayload.lastName}
+              onChange={onInputChange}
             />
             <FormError error={errors.lastName} />
           </label>
-        </div>
-        <div>
+        
           <label>
             Email
             <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
             <FormError error={errors.email} />
           </label>
-        </div>
-        <div>
+        
           <label>
             Password
             <input
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
+                type="password"
+                name="password"
+                value={userPayload.password}
+                onChange={onInputChange}
             />
             <FormError error={errors.password} />
           </label>
-        </div>
-        <div>
+        
           <label>
             Password Confirmation
             <input
@@ -155,10 +154,8 @@ const RegistrationForm = () => {
             />
             <FormError error={errors.passwordConfirmation} />
           </label>
-        </div>
-        <div>
+
           <input type="submit" className="button" value="Register" />
-        </div>
       </form>
     </div>
   );
