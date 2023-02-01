@@ -7,6 +7,8 @@ const RegistrationForm = () => {
     email: "",
     password: "",
     passwordConfirmation: "",
+    firstName: "",
+    lastName: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -15,7 +17,7 @@ const RegistrationForm = () => {
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, password, passwordConfirmation } = payload;
+    const { email, password, passwordConfirmation, firstName, lastName } = payload;
     const emailRegexp = config.validation.email.regexp;
     let newErrors = {};
     if (!email.match(emailRegexp)) {
@@ -43,6 +45,20 @@ const RegistrationForm = () => {
           ...newErrors,
           passwordConfirmation: "does not match password",
         };
+      }
+    }
+
+    if(firstName.trim() === ''){
+      newErrors = {
+        ...newErrors,
+        firstName: "is required"
+      }
+    }
+
+    if(lastName.trim() === ''){
+      newErrors = {
+        ...newErrors,
+        lastName: "is required"
       }
     }
 
@@ -89,26 +105,45 @@ const RegistrationForm = () => {
     <div className="grid-container">
       <h1>Register</h1>
       <form onSubmit={onSubmit}>
-        <div>
+        
+          <label>First name
+            <input 
+              type="text"
+              name="firstName"
+              value={userPayload.firstName}
+              onChange={onInputChange}
+            />
+            <FormError error={errors.firstName} />
+          </label>
+        
+        
+          <label>Last name
+            <input 
+              type="text"
+              name="lastName"
+              value={userPayload.lastName}
+              onChange={onInputChange}
+            />
+            <FormError error={errors.lastName} />
+          </label>
+        
           <label>
             Email
             <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
             <FormError error={errors.email} />
           </label>
-        </div>
-        <div>
+        
           <label>
             Password
             <input
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
+                type="password"
+                name="password"
+                value={userPayload.password}
+                onChange={onInputChange}
             />
             <FormError error={errors.password} />
           </label>
-        </div>
-        <div>
+        
           <label>
             Password Confirmation
             <input
@@ -119,10 +154,8 @@ const RegistrationForm = () => {
             />
             <FormError error={errors.passwordConfirmation} />
           </label>
-        </div>
-        <div>
+
           <input type="submit" className="button" value="Register" />
-        </div>
       </form>
     </div>
   );
