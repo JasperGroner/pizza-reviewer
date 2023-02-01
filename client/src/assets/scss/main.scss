@@ -28,3 +28,26 @@
 .pizza-list-item {
   list-style-type: none;
 }
+
+.show-page {
+  max-width: 75%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.show-page-flex {
+  display: flex;
+  max-width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.show-page-info {
+  max-width: 50%;
+  margin: 1rem 3rem;
+}
+
+.show-page-mage {
+  max-width: 50%;
+  margin: 1rem 3rem;
+}

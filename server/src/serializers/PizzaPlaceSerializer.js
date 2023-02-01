@@ -7,6 +7,10 @@ class PizzaPlaceSerializer extends Serializer {
         })
         return serializedPizzaPlaces
     }
+
+    static getDetail(pizzaPlace) {
+        return this.serialize(pizzaPlace, ["id", "name", "address", "phoneNumber", "website", "hours", "imageUrl"])
+    }
 }
 
 export default PizzaPlaceSerializer
