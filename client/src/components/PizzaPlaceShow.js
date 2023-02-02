@@ -26,7 +26,7 @@ const PizzaPlaceShow = props => {
 
 	let newReview = ""
 	if (currentUser) {
-		newReview = <NewReviewForm pizzaId={pizzaId} currentUser={currentUser}/>
+		newReview = <NewReviewForm pizzaId={pizzaId} currentUser={currentUser} setPizzaPlace={setPizzaPlace}/>
 	}
 
 	return (

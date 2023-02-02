@@ -31,7 +31,7 @@ const NewReviewForm = props => {
 				}
       } else {
         const body = await response.json()
-        console.log(body)
+        return body
       }
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -47,13 +47,17 @@ const NewReviewForm = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    postNewReview(newReview)
+    const reviewData = postNewReview(newReview)
+    props.setPizzaPlace({
+      ...pizzaPlace,
+      reviews: [...reviews, reviewData]
+    })
     clearForm()
   }
 
   const clearForm = () => {
     setNewReview({
-      userId: 1,
+      userId: props.currentUser.id,
       rating: 3,
       title: "",
       text: ""
