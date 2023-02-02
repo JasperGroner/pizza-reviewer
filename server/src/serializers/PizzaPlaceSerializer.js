@@ -8,9 +8,19 @@ class PizzaPlaceSerializer extends Serializer {
 		return serializedPizzaPlaces
 	}
 
-	static getDetail(pizzaPlace) {
-		return this.serialize(pizzaPlace, ["id", "name", "address", "phoneNumber", "website", "hours", "imageUrl"])
-	}
+	static async getDetail(pizzaPlace) {
+		try {
+			const serializedData = this.serialize(pizzaPlace, ["id", "name", "address", "phoneNumber", "website", "hours", "imageUrl"])
+			const reviews = await pizzaPlace.$relatedQuery("reviews")
+			const serializeReview = reviews.map(review => {
+				return this.serialize(review, ["id", "title", "rating", "text"])
+			})
+			serializedData.reviews = serializeReview
+			return serializedData
+		} catch(error){
+			throw(error)
+		}
+	}	
 }
 
 export default PizzaPlaceSerializer
