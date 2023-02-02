@@ -1,13 +1,13 @@
 class Serializer {
-    static serialize(data, allowedAttributes) {
-        const serializedData = {}
+	static serialize(data, allowedAttributes) {
+		const serializedData = {}
 
-        for (const attribute of allowedAttributes) {
-            serializedData[attribute] = data[attribute]
-        }
+		for (const attribute of allowedAttributes) {
+			serializedData[attribute] = data[attribute]
+		}
 
-        return serializedData
-    }
+		return serializedData
+	}
 }
 
 export default Serializer
