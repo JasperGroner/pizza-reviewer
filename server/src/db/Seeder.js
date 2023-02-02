@@ -11,13 +11,9 @@ class Seeder {
     await UserSeeder.seed()
     await ReviewSeeder.seed()
     
-
     console.log("Done!")
     await connection.destroy()
-
   }
-
-
 }
 
 export default Seeder

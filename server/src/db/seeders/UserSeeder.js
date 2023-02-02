@@ -21,7 +21,6 @@ class UserSeeder {
                 email: "marryjane@gmail.com",
                 cryptedPassword: "188845"
             }
-
         ]
         for (const userSeed of userData){
             const currentUser = await User.query().findOne({email: userSeed.email})
@@ -29,7 +28,6 @@ class UserSeeder {
                 await User.query().insert(userSeed)
             }
         }
-
     }
 }
 

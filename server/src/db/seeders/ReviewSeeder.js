@@ -4,7 +4,6 @@ import { Review , PizzaPlace, User } from "../../models/index.js"
 class ReviewSeeder {
     static async seed(){
         const venice = await PizzaPlace.query().findOne({ name:"Venice Italian Kitchen", address: "252 Massachusetts Ave., Arlington, MA 02474"})
-
         const boulevard = await PizzaPlace.query().findOne({ name:"Boulevard Pizza", address: "586 Kelley Boulevard, North Attleborough, MA 02760"})
 
         const user1 = await User.query().findOne({email:"tommyjane@gmail.com" })
