@@ -5,6 +5,7 @@ import NewReviewForm from "./NewReviewForm.js"
 const PizzaPlaceShow = props => {
 	const [pizzaPlace, setPizzaPlace] = useState({})
 	const pizzaId = props.match.params.id
+	const currentUser = props.currentUser
 
 	const getPizzaPlace = async () => {
 		try {
@@ -23,6 +24,11 @@ const PizzaPlaceShow = props => {
 		getPizzaPlace()
 	}, [])
 
+	let newReview = ""
+	if (currentUser) {
+		newReview = <NewReviewForm pizzaId={pizzaId} currentUser={currentUser}/>
+	}
+
 	return (
 		<div className="show-page">
 			<h1>{pizzaPlace.name}</h1>
@@ -37,7 +43,7 @@ const PizzaPlaceShow = props => {
 				</div>
 				<img src={pizzaPlace.imageUrl} className="show-page-image" />
 			</ div>
-			<NewReviewForm pizzaId={pizzaId}/>
+			{newReview}
 		</div>
 	)
 }

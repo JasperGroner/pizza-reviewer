@@ -3,7 +3,7 @@ import ErrorList from "./layout/ErrorList"
 
 const NewReviewForm = props => {
   const [newReview, setNewReview] = useState({
-    userId: 1,
+    userId: props.currentUser.id,
     rating: 3,
     title: "",
     text: ""

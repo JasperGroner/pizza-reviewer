@@ -11,7 +11,6 @@ import TopBar from "./layout/TopBar";
 import PizzaPlaceList from "./PizzaPlaceList.js";
 import PizzaPlaceShow from "./PizzaPlaceShow.js";
 import NewPizzaPlaceForm from "./NewPizzaPlaceForm.js";
-import NewReviewForm from "./NewReviewForm.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -34,7 +33,9 @@ const App = (props) => {
       <Switch>
         <Route exact path="/pizza-places" component={PizzaPlaceList} />
         <Route exact path="/pizza-places/new" component={NewPizzaPlaceForm} />
-        <Route exact path="/pizza-places/:id" component={PizzaPlaceShow} />
+        <Route exact path="/pizza-places/:id"
+          render={props=> <PizzaPlaceShow {...props} currentUser={currentUser}/>}
+        />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>
