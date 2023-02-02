@@ -19,6 +19,21 @@ class PizzaPlace extends Model {
 			}
 		}
 	}
+
+	static get relationMappings() {
+		const { Review } = require("./index.js")
+
+		return {
+			reviews: {
+				relation: Model.HasManyRelation,
+				modelClass: Review,
+				join: {
+					from: "pizzaPlaces.id",
+					to: "reviews.pizzaPlaceId"
+				}
+			}
+		}
+	}
 }
 
 module.exports = PizzaPlace
