@@ -31,7 +31,6 @@ class Review extends Model {
           to: "users.id"
         }
       },
-
       pizzaPlace: {
         relation: Model.BelongsToOneRelation,
         modelClass: PizzaPlace,
