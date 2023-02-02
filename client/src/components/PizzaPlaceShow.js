@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const PizzaPlaceShow = props => {
+	console.log(props)
 	const [pizzaPlace, setPizzaPlace] = useState({})
 
 	const getPizzaPlace = async () => {
@@ -21,6 +23,11 @@ const PizzaPlaceShow = props => {
 		getPizzaPlace()
 	}, [])
 
+	let newReviewLink = ""
+	if (props.user) {
+		newReviewLink = <Link to="reviews/new">Add new review</Link>
+	}
+
 	return (
 		<div className="show-page">
 			<h1>{pizzaPlace.name}</h1>
@@ -35,6 +42,7 @@ const PizzaPlaceShow = props => {
 				</div>
 				<img src={pizzaPlace.imageUrl} className="show-page-image" />
 			</ div>
+			{newReviewLink}
 		</div>
 	)
 }
