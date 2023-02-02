@@ -11,7 +11,11 @@ class PizzaPlaceSerializer extends Serializer {
 	static async getDetail(pizzaPlace) {
 		try {
 			const serializedData = this.serialize(pizzaPlace, ["id", "name", "address", "phoneNumber", "website", "hours", "imageUrl"])
-			serializedData.reviews = await pizzaPlace.$relatedQuery("reviews")
+			const reviews = await pizzaPlace.$relatedQuery("reviews")
+			const serializeReview = reviews.map(review => {
+				return this.serialize(review, ["id", "title", "rating", "text"])
+			})
+			serializedData.reviews = serializeReview
 			return serializedData
 		} catch(error){
 			throw(error)

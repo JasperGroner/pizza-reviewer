@@ -15,8 +15,6 @@ class ReviewSeeder {
             {
                 pizzaPlaceId: venice.id,
                 userId: user1.id,
-                // firstName: user1.firstName,
-                // lastName: user1.lastName,
                 rating: "3",
                 title: "Best pizza ever have!",
                 text: "At the round corner of Perfect Square"
@@ -24,18 +22,14 @@ class ReviewSeeder {
             {   
                 pizzaPlaceId: venice.id,
                 userId: user2.id,
-                // firstName: user2.firstName,
-                // lastName: user2.lastName,
                 pizzaPlaceId: boulevard.id,
-                rating: "2",
+                rating: "5",
                 title: "Best pizza!",
                 text: "New way to start your meal!"
             },
             {   
                 pizzaPlaceId: venice.id,
                 userId: user3.id,
-                // firstName: user3.firstName,
-                // lastName: user3.lastName,
                 pizzaPlaceId: venice.id,
                 rating: "4",
                 title: "Best pizza ever have. It make my day!",

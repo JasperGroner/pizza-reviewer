@@ -20,6 +20,7 @@ const PizzaPlaceShow = props => {
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
 			const pizzaData = await response.json()
+			debugger
 			setPizzaPlace(pizzaData.pizzaPlace)
 		} catch(error) {
 			console.error(`Error in fetch: ${error.message}`)
