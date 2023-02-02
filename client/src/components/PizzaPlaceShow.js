@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+
+import NewReviewForm from "./NewReviewForm.js"
 
 const PizzaPlaceShow = props => {
-	console.log(props)
 	const [pizzaPlace, setPizzaPlace] = useState({})
+	const pizzaId = props.match.params.id
 
 	const getPizzaPlace = async () => {
-		const pizzaId = props.match.params.id
 		try {
 			const response = await fetch(`/api/v1/pizza-places/${pizzaId}`)
 			if (!response.ok) {
@@ -23,11 +23,6 @@ const PizzaPlaceShow = props => {
 		getPizzaPlace()
 	}, [])
 
-	let newReviewLink = ""
-	if (props.user) {
-		newReviewLink = <Link to="reviews/new">Add new review</Link>
-	}
-
 	return (
 		<div className="show-page">
 			<h1>{pizzaPlace.name}</h1>
@@ -42,7 +37,7 @@ const PizzaPlaceShow = props => {
 				</div>
 				<img src={pizzaPlace.imageUrl} className="show-page-image" />
 			</ div>
-			{newReviewLink}
+			<NewReviewForm pizzaId={pizzaId}/>
 		</div>
 	)
 }

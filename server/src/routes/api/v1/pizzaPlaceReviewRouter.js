@@ -1,7 +1,7 @@
 import express from "express"
 import { ValidationError } from "objection"
 
-import { PizzaPlace, Review } from "../../../models/index.js"
+import { Review } from "../../../models/index.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 
 const pizzaPlaceReviewRouter = new express.Router({ mergeParams: true })
@@ -11,7 +11,7 @@ pizzaPlaceReviewRouter.post("/", async (req, res) => {
   body.pizzaPlaceId = req.params.id
   const formInput = cleanUserInput(body)
   try {
-    const newPizzaReview = await PizzaPlace.query().insertAndFetch(formInput)
+    const newPizzaReview = await Review.query().insertAndFetch(formInput)
     return res.status(201).json({newPizzaReview})
   } catch(error) {
     if(error instanceof ValidationError) {
