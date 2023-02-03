@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 import ReviewItem from "./ReviewItem.js"
+import NewReviewForm from "./NewReviewForm.js"
 
 const PizzaPlaceShow = props => {
+	const currentUser = props.currentUser
 	const [pizzaPlace, setPizzaPlace] = useState({
 		address: "",
 		hours: "",
@@ -13,7 +15,7 @@ const PizzaPlaceShow = props => {
 	})
 
 	const getPizzaPlace = async () => {
-		const pizzaId = props.match.params.id
+		const pizzaId = props.params.match.id
 		try {
 			const response = await fetch(`/api/v1/pizza-places/${pizzaId}`)
 			if (!response.ok) {
@@ -29,7 +31,7 @@ const PizzaPlaceShow = props => {
 	useEffect(() => {
 		getPizzaPlace()
 	}, [])
-    
+  
 	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
 		return (
 			<ReviewItem 
@@ -39,6 +41,13 @@ const PizzaPlaceShow = props => {
 		)
 	}) 
 
+	let newReview
+	if (currentUser) {
+		newReview = <NewReviewForm 
+			setPizzaPlace={setPizzaPlace}
+			pizzaPlace={pizzaPlace}
+		/>
+	}
 
 	return (
 		<div className="show-page">
@@ -58,6 +67,7 @@ const PizzaPlaceShow = props => {
 				<h4>Reviews</h4>
 				{reviewItems}
 			</div>
+			{newReview}
 		</div>
 	)
 }

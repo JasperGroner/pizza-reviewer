@@ -3,6 +3,7 @@ import { PizzaPlace } from "../../../models/index.js"
 import PizzaPlaceSerializer from "../../../serializers/PizzaPlaceSerializer.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import { ValidationError } from "objection"
+import pizzaPlaceReviewRouter from "./pizzaPlaceReviewRouter.js"
 const pizzaPlaceRouter = new express.Router()
 
 pizzaPlaceRouter.get("/", async (req, res) => {
@@ -39,5 +40,7 @@ pizzaPlaceRouter.get("/:id", async (req, res) => {
 		return res.status(500).json({errors: error})
 	}
 })
+
+pizzaPlaceRouter.use("/:id/reviews/", pizzaPlaceReviewRouter)
 
 export default pizzaPlaceRouter
