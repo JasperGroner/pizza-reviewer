@@ -9,10 +9,11 @@ const NewReviewForm = ({ pizzaPlace, setPizzaPlace }) => {
     text: ""
   })
 
+  const pizzaId = useParams().id
+
   const [errors, setErrors] = useState({})
 
   const postNewReview = async(newReviewData) => {
-    const pizzaId = useParams().id
     try {
       const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/`, {
         method: "POST",
