@@ -53,12 +53,17 @@ h6 {
 }
 
 .review-tile {
-  background-color: $pizza-orange;
+  background-color: #A77AA0;
+  color: #fefefe;
   max-width: 50%;
   border: 4px solid $pizza-red;
   border-radius: 50%;
   margin: 1em auto;
   padding-top: 1em;
+}
+
+.review-tile h6{
+  color: #FFF1D7
 }
 
 .list-logo {
