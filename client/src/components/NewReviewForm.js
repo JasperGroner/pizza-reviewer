@@ -1,9 +1,9 @@
 import React, {useState } from "react"
 import ErrorList from "./layout/ErrorList"
 
-const NewReviewForm = props => {
+const NewReviewForm = ({ pizzaId, pizzaPlace, setPizzaPlace, currentUser }) => {
   const [newReview, setNewReview] = useState({
-    userId: props.currentUser.id,
+    userId: currentUser.id,
     rating: 3,
     title: "",
     text: ""
@@ -12,7 +12,6 @@ const NewReviewForm = props => {
   const [errors, setErrors] = useState({})
 
   const postNewReview = async(newReviewData) => {
-    const pizzaId = props.pizzaId
     try {
       const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/new`, {
         method: "POST",
@@ -31,7 +30,7 @@ const NewReviewForm = props => {
 				}
       } else {
         const body = await response.json()
-        return body
+        return body.newPizzaReview
       }
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -45,19 +44,19 @@ const NewReviewForm = props => {
     })
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    const reviewData = postNewReview(newReview)
-    props.setPizzaPlace({
+    const reviewData = await postNewReview(newReview)
+    setPizzaPlace({
       ...pizzaPlace,
-      reviews: [...reviews, reviewData]
+      reviews: [...pizzaPlace.reviews, reviewData]
     })
     clearForm()
   }
 
   const clearForm = () => {
     setNewReview({
-      userId: props.currentUser.id,
+      userId: currentUser.id,
       rating: 3,
       title: "",
       text: ""

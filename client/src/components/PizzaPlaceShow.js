@@ -32,7 +32,7 @@ const PizzaPlaceShow = props => {
 	useEffect(() => {
 		getPizzaPlace()
 	}, [])
-    
+  
 	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
 		return (
 			<ReviewItem 
@@ -44,7 +44,12 @@ const PizzaPlaceShow = props => {
 
 	let newReview = ""
 	if (currentUser) {
-		newReview = <NewReviewForm pizzaId={pizzaId} currentUser={currentUser} setPizzaPlace={setPizzaPlace}/>
+		newReview = <NewReviewForm 
+			pizzaId={pizzaId} 
+			currentUser={currentUser} 
+			setPizzaPlace={setPizzaPlace}
+			pizzaPlace={pizzaPlace}
+		/>
 	}
 
 	return (
