@@ -20,14 +20,14 @@ const NewReviewForm = ({ pizzaId, pizzaPlace, setPizzaPlace, currentUser }) => {
         }),
         body: JSON.stringify(newReviewData)
       })
-      if (!response.ok) {
-				if (response.status === 422){
-					const body = await response.json()
-					const newErrors = translateServerErrors(body.errors)
-					return setErrors(newErrors)
-				} else {
-					throw new Error(`${response.status} (${response.statusText})`)
-				}
+      if (!response.ok) { 
+        if (response.status === 422){
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
+        } else {
+          throw new Error(`${response.status} (${response.statusText})`)
+        }
       } else {
         const body = await response.json()
         return body.newPizzaReview
