@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react"
-
+import ReviewItem from "./ReviewItem.js"
 import NewReviewForm from "./NewReviewForm.js"
 
 const PizzaPlaceShow = props => {
-	const [pizzaPlace, setPizzaPlace] = useState({})
+
 	const pizzaId = props.match.params.id
 	const currentUser = props.currentUser
+	const [pizzaPlace, setPizzaPlace] = useState({
+		address: "",
+		hours: "",
+		imageUrl: "",
+		name: "",
+		phoneNumber: "",
+		reviews: [],
+		website: ""
+	})
 
 	const getPizzaPlace = async () => {
 		try {
@@ -23,6 +32,15 @@ const PizzaPlaceShow = props => {
 	useEffect(() => {
 		getPizzaPlace()
 	}, [])
+    
+	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
+		return (
+			<ReviewItem 
+				key= {reviewItem.id}
+				{...reviewItem}
+			/>
+		)
+	}) 
 
 	let newReview = ""
 	if (currentUser) {
@@ -43,6 +61,10 @@ const PizzaPlaceShow = props => {
 				</div>
 				<img src={pizzaPlace.imageUrl} className="show-page-image" />
 			</ div>
+			<div>
+				<h4>Reviews</h4>
+				{reviewItems}
+			</div>
 			{newReview}
 		</div>
 	)
