@@ -74,7 +74,7 @@ const NewReviewForm = ({ pizzaId, pizzaPlace, setPizzaPlace, currentUser }) => {
             type="range"
             min="1" 
             max="5"
-            step="0.5"
+            step="1"
             onChange={handleInputChange}
             value={newReview.value}
             id="rating" 
