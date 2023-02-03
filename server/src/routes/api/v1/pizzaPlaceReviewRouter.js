@@ -9,6 +9,7 @@ const pizzaPlaceReviewRouter = new express.Router({ mergeParams: true })
 pizzaPlaceReviewRouter.post("/", async (req, res) => {
   const body = req.body
   body.pizzaPlaceId = req.params.id
+  body.userId = req.user.id
   const formInput = cleanUserInput(body)
   try {
     const newPizzaReview = await Review.query().insertAndFetch(formInput)

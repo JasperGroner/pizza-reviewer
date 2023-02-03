@@ -34,7 +34,7 @@ const App = (props) => {
         <Route exact path="/pizza-places" component={PizzaPlaceList} />
         <Route exact path="/pizza-places/new" component={NewPizzaPlaceForm} />
         <Route 
-          exact path="/pizza-places/:id"
+          exact path="/pizza-places/:id" 
           render={props => <PizzaPlaceShow {...props} currentUser={currentUser}/>}
         />
         <Route exact path="/users/new" component={RegistrationForm} />

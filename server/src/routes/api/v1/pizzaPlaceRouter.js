@@ -41,6 +41,6 @@ pizzaPlaceRouter.get("/:id", async (req, res) => {
 	}
 })
 
-pizzaPlaceRouter.use("/:id/reviews/new", pizzaPlaceReviewRouter)
+pizzaPlaceRouter.use("/:id/reviews/", pizzaPlaceReviewRouter)
 
 export default pizzaPlaceRouter
