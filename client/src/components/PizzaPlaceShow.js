@@ -43,11 +43,11 @@ const PizzaPlaceShow = props => {
 			console.error(`Error in fetch: ${error.message}`)
 		}
 	}
-
+	
 	useEffect(() => {
 		getPizzaPlace()
-	}, [pizzaPlace])
-  
+	}, [])
+
 	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
 		return (
 			<ReviewItem 
@@ -66,6 +66,7 @@ const PizzaPlaceShow = props => {
 			setPizzaPlace={setPizzaPlace}
 			pizzaPlace={pizzaPlace}
 			deleteReview={deleteReview}
+			
 		/>
 	}
 

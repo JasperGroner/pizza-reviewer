@@ -2,10 +2,10 @@ import React from 'react'
 
 const ReviewListItem = ({ title, rating, text, deleteReview, id }) => {
 
-const handleDeleteClick = event => {
-  event.preventDefault()
-  deleteReview(id)
-}
+  const handleDeleteClick = event => {
+		event.preventDefault()
+		deleteReview(id)
+	  }
 
   return (
     <>

@@ -13,7 +13,7 @@ const NewReviewForm = ({ pizzaId, pizzaPlace, setPizzaPlace, currentUser }) => {
 
   const postNewReview = async(newReviewData) => {
     try {
-      const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/new`, {
+      const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
