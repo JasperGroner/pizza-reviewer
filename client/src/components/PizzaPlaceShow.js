@@ -28,16 +28,32 @@ const PizzaPlaceShow = props => {
 			console.error(`Error in fetch: ${error.message}`)
 		}
 	}
+	const deleteReview = async (id) => {
+		try{
+			const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/${id}`, {
+				method: "DELETE",
+				headers: new Headers({
+				  "Content-Type": "application/json"
+				})
+			  })
+			  if (!response.ok){
+				throw new Error(`${response.status} (${response.statusText})`)
+			  }
+		}catch(error) {
+			console.error(`Error in fetch: ${error.message}`)
+		}
+	}
 
 	useEffect(() => {
 		getPizzaPlace()
-	}, [])
+	}, [pizzaPlace])
   
 	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
 		return (
 			<ReviewItem 
 				key= {reviewItem.id}
 				{...reviewItem}
+				deleteReview={deleteReview}
 			/>
 		)
 	}) 
@@ -49,6 +65,7 @@ const PizzaPlaceShow = props => {
 			currentUser={currentUser} 
 			setPizzaPlace={setPizzaPlace}
 			pizzaPlace={pizzaPlace}
+			deleteReview={deleteReview}
 		/>
 	}
 

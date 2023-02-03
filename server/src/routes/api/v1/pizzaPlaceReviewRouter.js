@@ -6,7 +6,7 @@ import cleanUserInput from "../../../services/cleanUserInput.js"
 
 const pizzaPlaceReviewRouter = new express.Router({ mergeParams: true })
 
-pizzaPlaceReviewRouter.post("/", async (req, res) => {
+pizzaPlaceReviewRouter.post("/new", async (req, res) => {
   const body = req.body
   body.pizzaPlaceId = req.params.id
   const formInput = cleanUserInput(body)
@@ -21,4 +21,12 @@ pizzaPlaceReviewRouter.post("/", async (req, res) => {
   }
 })
 
+pizzaPlaceReviewRouter.delete("/:id", async (req, res) => {
+  try {
+    await Review.query().deleteById(req.params.id)
+    return res.status(204)
+  } catch(error) {
+		return res.status(500).json({errors: error})
+	}
+})
 export default pizzaPlaceReviewRouter
