@@ -2,6 +2,11 @@
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
 // place global css here
+$pizza-green: #3F8D37;
+$pizza-beige: #FFF1D7;
+$pizza-orange: #F7AD45;
+$pizza-red: #BB3E00;
+
 *,
 *::before,
 *::after {
@@ -11,6 +16,49 @@
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
+}
+
+body {
+  background-color: $pizza-beige;
+  color: $pizza-red;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+a {
+  color: $pizza-red; 
+}
+
+a:hover {
+  color: $pizza-green;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+.top-bar, .top-bar ul {
+  background-color: $pizza-orange;
+}
+
+.button {
+  background-color: $pizza-green;
+}
+
+.review-tile {
+  background-color: $pizza-orange;
+  max-width: 50%;
+  border: 4px solid $pizza-red;
+  border-radius: 50%;
+  margin: 1em auto;
+  padding-top: 1em;
 }
 
 .list-logo {
