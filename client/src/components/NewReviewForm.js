@@ -1,9 +1,9 @@
-import React, {useState } from "react"
+import React, { useState } from "react"
+import { useParams } from "react-router-dom"
 import ErrorList from "./layout/ErrorList"
 
-const NewReviewForm = ({ pizzaId, pizzaPlace, setPizzaPlace, currentUser }) => {
+const NewReviewForm = ({ pizzaPlace, setPizzaPlace }) => {
   const [newReview, setNewReview] = useState({
-    userId: currentUser.id,
     rating: 3,
     title: "",
     text: ""
@@ -12,8 +12,9 @@ const NewReviewForm = ({ pizzaId, pizzaPlace, setPizzaPlace, currentUser }) => {
   const [errors, setErrors] = useState({})
 
   const postNewReview = async(newReviewData) => {
+    const pizzaId = useParams().id
     try {
-      const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews`, {
+      const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -56,7 +57,6 @@ const NewReviewForm = ({ pizzaId, pizzaPlace, setPizzaPlace, currentUser }) => {
 
   const clearForm = () => {
     setNewReview({
-      userId: currentUser.id,
       rating: 3,
       title: "",
       text: ""
@@ -106,7 +106,7 @@ const NewReviewForm = ({ pizzaId, pizzaPlace, setPizzaPlace, currentUser }) => {
         </label>
         
         <input className='button' type='submit' value='Submit' />
-		    <input className='button' type='button' value='Clear Form' onClick={clearForm}/> 
+        <input className='button' type='button' value='Clear Form' onClick={clearForm}/> 
 
       </form>
     </div>

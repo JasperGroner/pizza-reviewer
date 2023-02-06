@@ -3,8 +3,6 @@ import ReviewItem from "./ReviewItem.js"
 import NewReviewForm from "./NewReviewForm.js"
 
 const PizzaPlaceShow = props => {
-
-	const pizzaId = props.match.params.id
 	const currentUser = props.currentUser
 	const [pizzaPlace, setPizzaPlace] = useState({
 		address: "",
@@ -17,6 +15,7 @@ const PizzaPlaceShow = props => {
 	})
 
 	const getPizzaPlace = async () => {
+		const pizzaId = props.params.match.id
 		try {
 			const response = await fetch(`/api/v1/pizza-places/${pizzaId}`)
 			if (!response.ok) {
@@ -64,11 +63,9 @@ const PizzaPlaceShow = props => {
 		)
 	}) 
 
-	let newReview = ""
+	let newReview
 	if (currentUser) {
 		newReview = <NewReviewForm 
-			pizzaId={pizzaId} 
-			currentUser={currentUser} 
 			setPizzaPlace={setPizzaPlace}
 			pizzaPlace={pizzaPlace}
 			deleteReview={deleteReview}
