@@ -14,8 +14,9 @@ const PizzaPlaceShow = props => {
 		website: ""
 	})
 
+	const pizzaId = props.match.params.id
+
 	const getPizzaPlace = async () => {
-		const pizzaId = props.match.params.id
 		try {
 			const response = await fetch(`/api/v1/pizza-places/${pizzaId}`)
 			if (!response.ok) {
@@ -28,18 +29,29 @@ const PizzaPlaceShow = props => {
 		}
 	}
 
+	const deleteReview = async (id) => {
+		try {
+			const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/${id}`, {
+				method: "DELETE",
+				headers: new Headers({
+				"Content-Type": "application/json"
+				})
+			})
+			if (!response.ok) {
+				throw new Error(`${response.status} (${response.statusText})`)
+			}
+			setPizzaPlace({
+				...pizzaPlace,
+				reviews: pizzaPlace.reviews.filter(review => review.id !== id)
+			});
+		} catch(error) {
+			console.error(`Error in fetch: ${error.message}`)
+		}
+	}
+
 	useEffect(() => {
 		getPizzaPlace()
 	}, [])
-  
-	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
-		return (
-			<ReviewItem 
-				key= {reviewItem.id}
-				{...reviewItem}
-			/>
-		)
-	}) 
 
 	let newReview
 	if (currentUser) {
@@ -48,6 +60,17 @@ const PizzaPlaceShow = props => {
 			pizzaPlace={pizzaPlace}
 		/>
 	}
+	  
+	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
+		return ( 
+			<ReviewItem 
+				key={reviewItem.id}
+				{...reviewItem}
+				deleteReview={deleteReview}
+				currentUser={currentUser}
+			/>
+		)
+	}) 
 
 	return (
 		<div className="show-page">
