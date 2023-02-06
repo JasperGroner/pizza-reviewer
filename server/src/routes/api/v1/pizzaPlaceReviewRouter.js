@@ -22,4 +22,12 @@ pizzaPlaceReviewRouter.post("/", async (req, res) => {
   }
 })
 
+pizzaPlaceReviewRouter.delete("/:id", async (req, res) => {
+  try {
+    await Review.query().deleteById(req.params.id)
+    return res.status(204).json({message: 'deletion success'})
+  } catch(error) {
+		return res.status(500).json({errors: error})
+	}
+})
 export default pizzaPlaceReviewRouter

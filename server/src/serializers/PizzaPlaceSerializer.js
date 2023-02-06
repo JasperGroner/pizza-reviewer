@@ -13,7 +13,7 @@ class PizzaPlaceSerializer extends Serializer {
 			const serializedData = this.serialize(pizzaPlace, ["id", "name", "address", "phoneNumber", "website", "hours", "imageUrl"])
 			const reviews = await pizzaPlace.$relatedQuery("reviews")
 			const serializeReview = reviews.map(review => {
-				return this.serialize(review, ["id", "title", "rating", "text"])
+				return this.serialize(review, ["id", "title", "rating", "text", "pizzaId", "userId"])
 			})
 			serializedData.reviews = serializeReview
 			return serializedData
