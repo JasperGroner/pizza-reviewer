@@ -31,15 +31,6 @@ const PizzaPlaceShow = props => {
 	useEffect(() => {
 		getPizzaPlace()
 	}, [])
-  
-	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
-		return (
-			<ReviewItem 
-				key= {reviewItem.id}
-				{...reviewItem}
-			/>
-		)
-	}) 
 
 	let newReview
 	if (currentUser) {
@@ -48,6 +39,16 @@ const PizzaPlaceShow = props => {
 			pizzaPlace={pizzaPlace}
 		/>
 	}
+	  
+	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
+		return ( 
+			<ReviewItem 
+				key={reviewItem.id}
+				{...reviewItem}
+				currentUser={currentUser}
+			/>
+		)
+	}) 
 
 	return (
 		<div className="show-page">
