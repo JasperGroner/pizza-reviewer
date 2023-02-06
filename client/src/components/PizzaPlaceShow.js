@@ -27,21 +27,21 @@ const PizzaPlaceShow = props => {
 		}
 	}
 	const deleteReview = async (id) => {
-		try{
+		try {
 			const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/${id}`, {
 					method: "DELETE",
 					headers: new Headers({
 					"Content-Type": "application/json"
 					})
 				})
-				if (!response.ok){
+				if (!response.ok) {
 					throw new Error(`${response.status} (${response.statusText})`)
 				}
 				setPizzaPlace({
 					...pizzaPlace,
 					reviews: pizzaPlace.reviews.filter(review => review.id !== id)
 				  });
-		}catch(error) {
+		} catch(error) {
 			console.error(`Error in fetch: ${error.message}`)
 		}
 	}

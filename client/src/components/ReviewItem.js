@@ -7,8 +7,8 @@ const ReviewListItem = ({ title, rating, text, deleteReview, id, currentUser }) 
 		deleteReview(id)
 	  }
 
-    let button =""
-    if(currentUser){
+    let button = ""
+    if (currentUser) {
       button = <input className='button' type='button' value='Delete' onClick={handleDeleteClick}/>
     }
 
