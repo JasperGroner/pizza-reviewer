@@ -1,15 +1,7 @@
 import React, { useState } from 'react'
 import EditReviewForm from './EditReviewForm'
 
-const ReviewListItem = ({ title, rating, text, id, userId, firstName, lastName, currentUser, deleteReview }) => {
-  const [ review, setReview ] = useState({
-    title: title,
-    rating: rating,
-    text: text,
-    firstName: firstName,
-    lastName: lastName
-  })
-
+const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, currentUser, deleteReview, pizzaPlace, setPizzaPlace }) => {
   const [editForm, setEditForm] = useState(null)
 
   const editClickHandler = event => {
@@ -21,7 +13,8 @@ const ReviewListItem = ({ title, rating, text, id, userId, firstName, lastName, 
           title={title}
           rating={rating}
           text={text}
-          setReview={setReview}
+          pizzaPlace={pizzaPlace}
+          setPizzaPlace={setPizzaPlace}
           setEditForm={setEditForm}
         />
       )
@@ -48,10 +41,10 @@ const ReviewListItem = ({ title, rating, text, id, userId, firstName, lastName, 
 
   return (
     <>
-        <h6>Title: {review.title}</h6>
-        <p>Review by: {review.firstName} {review.lastName}</p>
-        <p>Rating: {review.rating}</p>
-        <p>User Review: {review.text}</p>
+        <h6>Title: {title}</h6>
+        <p>Review by: {firstName} {lastName}</p>
+        <p>Rating: {rating}</p>
+        <p>User Review: {text}</p>
         {editButton}
         {deleteButton}
         {editForm}
@@ -59,4 +52,4 @@ const ReviewListItem = ({ title, rating, text, id, userId, firstName, lastName, 
   )
 }
 
-export default ReviewListItem
+export default ReviewItem

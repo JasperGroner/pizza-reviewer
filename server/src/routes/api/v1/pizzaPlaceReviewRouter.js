@@ -23,7 +23,7 @@ pizzaPlaceReviewRouter.post("/", async (req, res) => {
   }
 })
   
-pizzaPlaceReviewRouter.put("/:reviewId", async (req, res) => {
+pizzaPlaceReviewRouter.patch("/:reviewId", async (req, res) => {
   const body = req.body
   body.id = req.params.reviewId
   const formInput = cleanUserInput(body)
