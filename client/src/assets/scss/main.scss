@@ -41,7 +41,7 @@ h1 {
 }
 
 h6 {
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .top-bar, .top-bar ul {
@@ -50,6 +50,7 @@ h6 {
 
 .button {
   background-color: $pizza-green;
+  border: solid $pizza-orange 1px;
 }
 
 .review-tile {
@@ -58,8 +59,8 @@ h6 {
   max-width: 50%;
   border: 4px solid $pizza-orange;
   border-radius: 50%;
-  margin: 1em auto;
-  padding-top: 1em;
+  margin: 1rem auto;
+  padding: 4rem 3rem 3rem 3rem;
 }
 
 .review-tile h6{
@@ -68,7 +69,7 @@ h6 {
 
 .review-form {
   margin: 0 auto;
-  max-width: 50%;
+  max-width: 70%;
 }
 
 .list-logo {

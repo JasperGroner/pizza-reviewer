@@ -56,7 +56,7 @@ const EditReviewForm = ({ reviewId, title, text, rating, setReview, setEditForm}
 
   return (
     <>
-      <h2>Edit Review</h2>
+      <h6>Edit Review</h6>
       <form onSubmit={handleSubmit} className="review-form">
         <ErrorList errors={errors}/>
         <label htmlFor="rating">
