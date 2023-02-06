@@ -69,8 +69,6 @@ const PizzaPlaceShow = props => {
 			pizzaPlace={pizzaPlace}
 			deleteReview={deleteReview}
 		/>
-
-		
 	}
 
 	return (

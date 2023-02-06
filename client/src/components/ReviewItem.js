@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ReviewListItem = ({ title, rating, text, deleteReview, id, currentUser }) => {
+const ReviewListItem = ({ title, rating, text, deleteReview, id, currentUser, userId }) => {
 
   const handleDeleteClick = event => {
 		event.preventDefault()
@@ -8,7 +8,7 @@ const ReviewListItem = ({ title, rating, text, deleteReview, id, currentUser }) 
 	  }
 
     let button = ""
-    if (currentUser) {
+    if (currentUser && currentUser.id === userId) {
       button = <input className='button' type='button' value='Delete' onClick={handleDeleteClick}/>
     }
 
