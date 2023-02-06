@@ -52,20 +52,6 @@ const PizzaPlaceShow = props => {
 	useEffect(() => {
 		getPizzaPlace()
 	}, [])
-<<<<<<< HEAD
-=======
-
-	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
-		return (
-			<ReviewItem 
-				key= {reviewItem.id}
-				{...reviewItem}
-				deleteReview={deleteReview}
-				currentUser={currentUser}
-			/>
-		)
-	}) 
->>>>>>> 5f4d327c5c20575a9b4eae09cb20e36367812b80
 
 	let newReview
 	if (currentUser) {
@@ -80,6 +66,7 @@ const PizzaPlaceShow = props => {
 			<ReviewItem 
 				key={reviewItem.id}
 				{...reviewItem}
+				deleteReview={deleteReview}
 				currentUser={currentUser}
 			/>
 		)
