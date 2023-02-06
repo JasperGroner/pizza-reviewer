@@ -65,7 +65,7 @@ const NewReviewForm = ({ pizzaPlace, setPizzaPlace }) => {
   }
 
   return (
-    <div>
+    <div className="review-form">
       <h1>Add New Review</h1>
       <form onSubmit={handleSubmit} >
         <ErrorList errors={errors}/>
