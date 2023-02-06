@@ -13,9 +13,8 @@ const PizzaPlaceShow = props => {
 		reviews: [],
 		website: ""
 	})
-
+	const pizzaId = props.match.params.id
 	const getPizzaPlace = async () => {
-		const pizzaId = props.match.params.id
 		try {
 			const response = await fetch(`/api/v1/pizza-places/${pizzaId}`)
 			if (!response.ok) {
