@@ -90,7 +90,9 @@ const PizzaPlaceShow = props => {
 			</ div>
 			<div>
 				<h4>Reviews</h4>
-				{reviewItems}
+				<div className="reviews-list">
+					{reviewItems}
+				</div>
 			</div>
 			{newReview}
 		</div>

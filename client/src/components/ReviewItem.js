@@ -40,7 +40,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, curr
   }
 
   return (
-    <>
+    <div className="review-tile">
         <h6>Title: {title}</h6>
         <p>Review by: {firstName} {lastName}</p>
         <p>Rating: {rating}</p>
@@ -48,7 +48,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, curr
         {editButton}
         {deleteButton}
         {editForm}
-    </>
+    </div>
   )
 }
 
