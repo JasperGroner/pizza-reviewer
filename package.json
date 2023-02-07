@@ -18,5 +18,9 @@
   },
   "engines": {
     "node": "^16.18"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.266.0",
+    "react-dropzone": "^14.2.3"
   }
 }
