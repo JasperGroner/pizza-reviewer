@@ -56,7 +56,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
         }
       } else {
         const body = await response.json()
-        const newVoteCount = voteCount + body.newVote.vote
+        const newVoteCount = body.newVoteCount
         const editedReviews = pizzaPlace.reviews
         const updateID = editedReviews.findIndex(element => element.id === id)
         editedReviews[updateID].voteCount = newVoteCount 
@@ -85,10 +85,16 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
     deleteButton = <input className='button' type='button' value='Delete' onClick={handleDeleteClick}/>
   }
 
+  let upvoteButton, downvoteButton
+  if (currentUser) {
+    upvoteButton = <input className='button' type='button' value='Upvote' onClick={handleUpvoteClick}/>
+    downvoteButton = <input className='button' type='button' value='Downvote' onClick={handleDownvoteClick}/>
+  }
+
   return (
     <div>
-        <input className='button' type='button' value='Upvote' onClick={handleUpvoteClick}/>
-        <input className='button' type='button' value='Downvote' onClick={handleDownvoteClick}/>
+        {upvoteButton}
+        {downvoteButton}
         <p>Vote count: {voteCount}</p>
         <h6>Title: {title}</h6>
         <p>Review by: {firstName} {lastName}</p>

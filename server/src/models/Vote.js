@@ -39,13 +39,15 @@ class Vote extends Model {
     }
   }
 
-  static async addVote(vote) {
-    const voteExists = await Vote.query().findOne({userId: vote.userId, reviewId: vote.reviewId})
+  static async addVote(newVote) {
+    const voteExists = await Vote.query().findOne({userId: newVote.userId, reviewId: newVote.reviewId})
     let postedVote
     if (!voteExists) {
-      postedVote = await Vote.query().insertAndFetch(vote)
+      postedVote = await Vote.query().insertAndFetch(newVote)
     } else {
-
+      postedVote = await Vote.query().patchAndFetchById(voteExists.id, {
+        vote: newVote.vote
+      })
     }
     return postedVote
   }
