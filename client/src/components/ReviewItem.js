@@ -66,7 +66,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
         })
       }
     } catch(error) {
-			console.error(`Error in fetch: ${error.message}`)
+      console.error(`Error in fetch: ${error.message}`)
     }
   }
 
