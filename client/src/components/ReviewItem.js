@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import EditReviewForm from './EditReviewForm'
+import PizzaImageArray from './PizzaImageArray'
 
 const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, voteCount, currentUser, deleteReview, pizzaPlace, setPizzaPlace }) => {
   const [editForm, setEditForm] = useState(null)
@@ -98,7 +99,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
         <p>Vote count: {voteCount}</p>
         <h6>Title: {title}</h6>
         <p>Review by: {firstName} {lastName}</p>
-        <p>Rating: {rating}</p>
+        <p>Rating: <PizzaImageArray rating={rating}/></p>
         <p>User Review: {text}</p>
         {editButton}
         {deleteButton}
