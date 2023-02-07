@@ -10,7 +10,7 @@ class Vote extends Model {
       type: "object",
       required: ["vote", "userId", "reviewId"],
       properties: {
-        vote: {type: ["string", "integer"], minimum: "-1", maximum: "1"},
+        vote: {type: ["string", "integer"], minimum: -1, maximum: 1},
         userId: {type: ["string", "integer"]},
         reviewId: {type: ["string", "integer"]}
       }
@@ -37,6 +37,17 @@ class Vote extends Model {
         }
       }
     }
+  }
+
+  static async addVote(vote) {
+    const voteExists = await Vote.query().findOne({userId: vote.userId, reviewId: vote.reviewId})
+    let postedVote
+    if (!voteExists) {
+      postedVote = await Vote.query().insertAndFetch(vote)
+    } else {
+
+    }
+    return postedVote
   }
 }
 

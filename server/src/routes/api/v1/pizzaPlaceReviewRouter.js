@@ -4,6 +4,7 @@ import { ValidationError } from "objection"
 import { Review } from "../../../models/index.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import ReviewSerialzer from "../../../serializers/ReviewSerializer.js"
+import pizzaPlaceReviewVotesRouter from "./pizzaPlaceReviewVotesRouter.js"
 
 const pizzaPlaceReviewRouter = new express.Router({ mergeParams: true })
 
@@ -51,4 +52,7 @@ pizzaPlaceReviewRouter.delete("/:id", async (req, res) => {
 		return res.status(500).json({errors: error})
 	}
 })
+
+pizzaPlaceReviewRouter.use("/:reviewId/votes", pizzaPlaceReviewVotesRouter)
+
 export default pizzaPlaceReviewRouter
