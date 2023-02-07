@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom"
 import ErrorList from "./layout/ErrorList";
+import PizzaImageArray from "./PizzaImageArray";
 
 const EditReviewForm = ({ reviewId, title, text, rating, setEditForm, pizzaPlace, setPizzaPlace}) => {
   
@@ -79,7 +80,7 @@ const EditReviewForm = ({ reviewId, title, text, rating, setEditForm, pizzaPlace
           />
         </label>
         
-        {editedReview.rating} stars
+        <PizzaImageArray rating={editedReview.rating}/>
         
         <label htmlFor="title">
           Title of Review:
