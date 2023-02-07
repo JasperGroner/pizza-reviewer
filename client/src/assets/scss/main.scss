@@ -2,6 +2,11 @@
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
 // place global css here
+$pizza-green: #3F8D37;
+$pizza-beige: #FFF1D7;
+$pizza-orange: #F7AD45;
+$pizza-red: #BB3E00;
+
 *,
 *::before,
 *::after {
@@ -11,6 +16,69 @@
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
+}
+
+body {
+  background-color: $pizza-beige;
+  color: $pizza-red;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+a {
+  color: $pizza-red; 
+}
+
+a:hover, a:active, a:focus {
+  color: $pizza-green;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h6 {
+  font-size: 24px;
+}
+
+.top-bar, .top-bar ul {
+  background-color: $pizza-orange;
+}
+
+.button {
+  background-color: $pizza-green;
+  border: solid $pizza-orange 1px;
+}
+
+.button:hover, .button:active, .button:focus {
+  background-color: $pizza-red;
+}
+
+.reviews-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.review-tile {
+  background-color: $pizza-red;
+  color: $pizza-beige;
+  width: 49%;
+  border: 4px solid $pizza-orange;
+  border-radius: 15%;
+  margin: 1rem auto;
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+.review-tile h6{
+  color: #FFF1D7
+}
+
+.review-form {
+  margin: 0 auto;
+  max-width: 70%;
 }
 
 .list-logo {

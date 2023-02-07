@@ -92,7 +92,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
   }
 
   return (
-    <div>
+    <div className="review-tile">
         {upvoteButton}
         {downvoteButton}
         <p>Vote count: {voteCount}</p>
