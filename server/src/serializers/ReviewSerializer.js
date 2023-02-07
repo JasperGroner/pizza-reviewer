@@ -1,4 +1,5 @@
 import Serializer from "./Serializer.js";
+import VoteSerializer from "./VoteSerializer.js"
 
 class ReviewSerialzer extends Serializer {
   static async getDetail(review) {
@@ -6,6 +7,8 @@ class ReviewSerialzer extends Serializer {
     const user = await review.$relatedQuery("user")
     serializeReview.firstName = user.firstName
     serializeReview.lastName = user.lastName
+    const votes = await review.$relatedQuery("votes")
+    serializeReview.voteCount = await VoteSerializer.getSummary(votes)
     return serializeReview
   }
 }
