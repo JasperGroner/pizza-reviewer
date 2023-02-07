@@ -31,7 +31,7 @@ const PizzaPlaceList = (props) => {
   return (
     <div className='pizza-list'>
       <h1>Pizza Place List</h1>
-      <ul>{pizzaPlaceReact}</ul>
+      {pizzaPlaceReact}
       <Link to='/pizza-places/new'> Add New Pizza Place </Link>
     </div>
   )

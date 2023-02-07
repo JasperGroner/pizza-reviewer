@@ -89,7 +89,7 @@ const PizzaPlaceShow = props => {
 				<img src={pizzaPlace.imageUrl} className="show-page-image" />
 			</ div>
 			<div>
-				<h4>Reviews</h4>
+				<h2>Reviews</h2>
 				<div className="reviews-list">
 					{reviewItems}
 				</div>
