@@ -13,7 +13,8 @@ pizzaPlaceReviewVotesRouter.post("/", async (req, res) => {
   try {
     const newVote = await Vote.addVote(body)
     const review = await Review.query().findById(body.reviewId)
-    const newVoteCount = await VoteSerializer.getSummary(review)
+    const votes = await review.$relatedQuery("votes")
+    const newVoteCount = await VoteSerializer.getSummary(votes)
     return res.status(201).json({newVoteCount: newVoteCount})
   } catch (error) {
     if (error instanceof ValidationError) {

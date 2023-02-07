@@ -7,7 +7,8 @@ class ReviewSerialzer extends Serializer {
     const user = await review.$relatedQuery("user")
     serializeReview.firstName = user.firstName
     serializeReview.lastName = user.lastName
-    serializeReview.voteCount = await VoteSerializer.getSummary(review)
+    const votes = await review.$relatedQuery("votes")
+    serializeReview.voteCount = await VoteSerializer.getSummary(votes)
     return serializeReview
   }
 }

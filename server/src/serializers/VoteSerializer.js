@@ -1,10 +1,6 @@
 class VoteSerializer {
-  static async getSummary(review) {
-    const votes = await review.$relatedQuery("votes")
-    let voteCount = 0
-    for (const vote of votes) {
-     voteCount += vote.vote
-    }
+  static async getSummary(votes) {
+    let voteCount = votes.reduce((accumulator, currentValue) => accumulator + currentValue.vote, 0)
     return voteCount
   }
 }
