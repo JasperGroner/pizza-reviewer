@@ -21,3 +21,4 @@ exports.up = async (knex) => {
 exports.down = (knex) => {
     return knex.schema.dropTableIfExists("uploads")
 }
+

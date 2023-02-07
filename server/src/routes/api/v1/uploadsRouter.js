@@ -31,3 +31,4 @@ uploadsRouter.post("/", uploadImage.single("image"), async(req, res) => {
 })
 
 export default uploadsRouter
+

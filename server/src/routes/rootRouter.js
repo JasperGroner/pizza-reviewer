@@ -15,3 +15,4 @@ rootRouter.use("/api/v1/uploads", uploadsRouter);
 rootRouter.use("/", clientRouter);
 
 export default rootRouter;
+
