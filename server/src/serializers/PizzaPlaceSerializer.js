@@ -1,4 +1,5 @@
 import Serializer from "./Serializer.js";
+import ReviewSerialzer from "./ReviewSerializer.js";
 
 class PizzaPlaceSerializer extends Serializer {
 	static getSummary(pizzaPlaces) {
@@ -12,9 +13,11 @@ class PizzaPlaceSerializer extends Serializer {
 		try {
 			const serializedData = this.serialize(pizzaPlace, ["id", "name", "address", "phoneNumber", "website", "hours", "imageUrl"])
 			const reviews = await pizzaPlace.$relatedQuery("reviews")
-			const serializeReview = reviews.map(review => {
-				return this.serialize(review, ["id", "title", "rating", "text", "pizzaId", "userId"])
-			})
+			const serializeReview = await Promise.all(
+				reviews.map(async (review) => {
+					return await ReviewSerialzer.getDetail(review)
+				})
+			)
 			serializedData.reviews = serializeReview
 			return serializedData
 		} catch(error){

@@ -53,17 +53,6 @@ const PizzaPlaceShow = props => {
 		getPizzaPlace()
 	}, [])
 
-	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
-		return (
-			<ReviewItem 
-				key= {reviewItem.id}
-				{...reviewItem}
-				deleteReview={deleteReview}
-				currentUser={currentUser}
-			/>
-		)
-	}) 
-
 	let newReview
 	if (currentUser) {
 		newReview = <NewReviewForm 
@@ -71,6 +60,19 @@ const PizzaPlaceShow = props => {
 			pizzaPlace={pizzaPlace}
 		/>
 	}
+	  
+	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
+		return ( 
+			<ReviewItem 
+				key={reviewItem.id}
+				{...reviewItem}
+				deleteReview={deleteReview}
+				currentUser={currentUser}
+        pizzaPlace={pizzaPlace}
+        setPizzaPlace={setPizzaPlace}
+			/>
+		)
+	}) 
 
 	return (
 		<div className="show-page">

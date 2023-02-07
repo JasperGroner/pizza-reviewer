@@ -1,26 +1,27 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { useParams } from "react-router-dom"
-import ErrorList from "./layout/ErrorList"
+import ErrorList from "./layout/ErrorList";
 
-const NewReviewForm = ({ pizzaPlace, setPizzaPlace }) => {
-  const [newReview, setNewReview] = useState({
-    rating: 3,
-    title: "",
-    text: ""
+const EditReviewForm = ({ reviewId, title, text, rating, setEditForm, pizzaPlace, setPizzaPlace}) => {
+  
+  const [editedReview, setEditedReview] = useState({
+    rating: rating,
+    title: title,
+    text: text
   })
-
-  const pizzaId = useParams().id
 
   const [errors, setErrors] = useState({})
 
-  const postNewReview = async(newReviewData) => {
+  const pizzaId = useParams().id
+
+  const editReview = async (editedReviewData) => {
     try {
-      const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/`, {
-        method: "POST",
+      const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/${reviewId}/`, {
+        method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json"
         }),
-        body: JSON.stringify(newReviewData)
+        body: JSON.stringify(editedReviewData)
       })
       if (!response.ok) { 
         if (response.status === 422){
@@ -32,41 +33,36 @@ const NewReviewForm = ({ pizzaPlace, setPizzaPlace }) => {
         }
       } else {
         const body = await response.json()
-        return body.newPizzaReview
+        return body.editedReview
       }
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const newlyEditedReview = await editReview(editedReview)
+    const editedReviews = pizzaPlace.reviews
+    const updateID = editedReviews.findIndex(element => element.id === reviewId)
+    editedReviews[updateID] = newlyEditedReview
+    setPizzaPlace({
+      ...pizzaPlace,
+      reviews: editedReviews
+    })
+    setEditForm(null)
+  }
+
   const handleInputChange = event => {
-    setNewReview({
-      ...newReview,
+    setEditedReview({
+      ...editedReview,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    const reviewData = await postNewReview(newReview)
-    setPizzaPlace({
-      ...pizzaPlace,
-      reviews: [...pizzaPlace.reviews, reviewData]
-    })
-    clearForm()
-  }
-
-  const clearForm = () => {
-    setNewReview({
-      rating: 3,
-      title: "",
-      text: ""
-    })
-  }
-
   return (
-    <div>
-      <h1>Add New Review</h1>
+    <>
+      <h2>Edit Review</h2>
       <form onSubmit={handleSubmit} >
         <ErrorList errors={errors}/>
         <label htmlFor="rating">
@@ -77,13 +73,13 @@ const NewReviewForm = ({ pizzaPlace, setPizzaPlace }) => {
             max="5"
             step="1"
             onChange={handleInputChange}
-            value={newReview.rating}
+            value={editedReview.rating}
             id="rating" 
             name="rating"
           />
         </label>
         
-        {newReview.rating} stars
+        {editedReview.rating} stars
         
         <label htmlFor="title">
           Title of Review:
@@ -92,7 +88,7 @@ const NewReviewForm = ({ pizzaPlace, setPizzaPlace }) => {
             name="title"
             id="title"
             onChange={handleInputChange}
-            value={newReview.title}
+            value={editedReview.title}
           />
         </label>
 
@@ -102,16 +98,15 @@ const NewReviewForm = ({ pizzaPlace, setPizzaPlace }) => {
             name="text"
             id="text"
             onChange={handleInputChange}
-            value={newReview.text}
+            value={editedReview.text}
           />
         </label>
         
         <input className='button' type='submit' value='Submit' />
-        <input className='button' type='button' value='Clear Form' onClick={clearForm}/> 
 
       </form>
-    </div>
+    </>
   )
 }
 
-export default NewReviewForm
+export default EditReviewForm
