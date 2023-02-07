@@ -23,7 +23,7 @@ pizzaPlaceReviewRouter.post("/", async (req, res) => {
   }
 })
   
-pizzaPlaceReviewRouter.put("/:reviewId", async (req, res) => {
+pizzaPlaceReviewRouter.patch("/:reviewId", async (req, res) => {
   const body = req.body
   body.id = req.params.reviewId
   const formInput = cleanUserInput(body)
@@ -34,7 +34,7 @@ pizzaPlaceReviewRouter.put("/:reviewId", async (req, res) => {
       rating: formInput.rating
     })
     const serializedEditedReview = await ReviewSerialzer.getDetail(editedReview)
-    return res.status(201).json({editedReview: serializedEditedReview})
+    return res.status(200).json({editedReview: serializedEditedReview})
   } catch(error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })

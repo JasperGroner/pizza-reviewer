@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom"
 import ErrorList from "./layout/ErrorList";
 
-const EditReviewForm = ({ reviewId, title, text, rating, setReview, setEditForm}) => {
+const EditReviewForm = ({ reviewId, title, text, rating, setEditForm, pizzaPlace, setPizzaPlace}) => {
   
   const [editedReview, setEditedReview] = useState({
     rating: rating,
@@ -17,7 +17,7 @@ const EditReviewForm = ({ reviewId, title, text, rating, setReview, setEditForm}
   const editReview = async (editedReviewData) => {
     try {
       const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/${reviewId}/`, {
-        method: "PUT",
+        method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json"
         }),
@@ -43,7 +43,13 @@ const EditReviewForm = ({ reviewId, title, text, rating, setReview, setEditForm}
   const handleSubmit = async (event) => {
     event.preventDefault()
     const newlyEditedReview = await editReview(editedReview)
-    setReview(newlyEditedReview)
+    const editedReviews = pizzaPlace.reviews
+    const updateID = editedReviews.findIndex(element => element.id === reviewId)
+    editedReviews[updateID] = newlyEditedReview
+    setPizzaPlace({
+      ...pizzaPlace,
+      reviews: editedReviews
+    })
     setEditForm(null)
   }
 

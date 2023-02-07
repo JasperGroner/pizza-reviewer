@@ -68,6 +68,8 @@ const PizzaPlaceShow = props => {
 				{...reviewItem}
 				deleteReview={deleteReview}
 				currentUser={currentUser}
+        pizzaPlace={pizzaPlace}
+        setPizzaPlace={setPizzaPlace}
 			/>
 		)
 	}) 
