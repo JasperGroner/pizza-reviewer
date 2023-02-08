@@ -33,6 +33,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
         }
       } else {
         const body = await response.json()
+				console.log(body.editedPizzaPlace)
         return body.editedPizzaPlace
       }
     } catch(error) {
@@ -46,9 +47,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 		const editedPizzaPlacesList = pizzaPlacesList
 		const updateId = pizzaPlacesList.findIndex(element => element.id === newlyEditedPizzaPlace.id)
 		editedPizzaPlacesList[updateId] = newlyEditedPizzaPlace
-		setPizzaPlacesList(
-			editedPizzaPlacesList
-		)
+		setPizzaPlacesList(editedPizzaPlacesList)//this updated state with setPizzaPlaceList([])
 		setEditForm(null)
 	}
 

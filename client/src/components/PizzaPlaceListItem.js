@@ -20,7 +20,7 @@ const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, set
 				pizzaPlacesList={pizzaPlacesList}
 				setPizzaPlacesList={setPizzaPlacesList}
 				setEditForm={setEditForm}/>
-			)
+			) //Nick wants us *not* to have the React component in state. This was Jasper's pattern in Edit Pizza Place Form.
 		}
 	}
 

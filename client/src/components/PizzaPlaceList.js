@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 const PizzaPlaceList = (props) => {
   const [pizzaPlacesList, setPizzaPlacesList] = useState([])
+
   const getPizzaPlaces = async () => {
     try {
       const response = await fetch("/api/v1/pizza-places")
@@ -17,8 +18,6 @@ const PizzaPlaceList = (props) => {
       console.error(`Error in fetch: ${error.message}`)
     }
   }
-
-  console.log(pizzaPlacesList)
 
   const deletePizzaPlace = async (id) => {
     try {
