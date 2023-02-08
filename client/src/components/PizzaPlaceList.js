@@ -18,13 +18,32 @@ const PizzaPlaceList = (props) => {
     }
   }
 
+  const deletePizzaPlace = async (id) => {
+    try {
+			const response = await fetch(`/api/v1/pizza-places/${id}`, {
+				method: "DELETE",
+				headers: new Headers({
+				"Content-Type": "application/json"
+				})
+			})
+			if (!response.ok) {
+				throw new Error(`${response.status} (${response.statusText})`)
+			}
+      // setPizzaPlacesList([
+      //   pizzaPlacesList : pizzaPlacesList.filter(pizzaPlace => pizzaPlace.id !== id)
+      // ])
+		} catch(error) {
+			console.error(`Error in fetch: ${error.message}`)
+		}
+	}
+
   useEffect(() => {
     getPizzaPlaces()
   }, [])
 
   const pizzaPlaceReact = pizzaPlacesList.map(pizzaPlace => {
     return (
-      <PizzaPlaceListItem pizzaPlace={pizzaPlace} key={pizzaPlace.id}/>
+      <PizzaPlaceListItem pizzaPlace={pizzaPlace} key={pizzaPlace.id} deletePizzaPlace={deletePizzaPlace} />
     )
   })
 

@@ -41,6 +41,15 @@ pizzaPlaceRouter.get("/:id", async (req, res) => {
 	}
 })
 
+pizzaPlaceRouter.delete("/:id", async (req, res) => {
+	try{
+		await PizzaPlace.query().deleteById(req.params.id)
+    return res.status(204).json({message: 'deletion success'})
+	}catch(error) {
+		return res.status(500).json({errors: error})
+	}
+})
+
 pizzaPlaceRouter.use("/:pizzaId/reviews/", pizzaPlaceReviewRouter)
 
 export default pizzaPlaceRouter
