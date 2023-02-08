@@ -29,9 +29,7 @@ const PizzaPlaceList = (props) => {
 			if (!response.ok) {
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
-      setPizzaPlacesList([
-        ...pizzaPlacesList
-      ])
+      setPizzaPlacesList(pizzaPlacesList.filter(pizzaPlace => pizzaPlace.id !== id))
 		} catch(error) {
 			console.error(`Error in fetch: ${error.message}`)
 		}

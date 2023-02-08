@@ -48,7 +48,8 @@ const EditPizzaPlaceForm = ({ pizzaPlace, setPizzaPlacesList, setEditForm }) => 
 	const handleSubmit = async event => {
 		event.preventDefault()
 		const newlyEditedPizzaPlace = await editPizzaPlace(editedPizzaPlace)
-		
+		const updateId = newlyEditedPizzaPlace.id
+	
 	}
 
 	const handleInputChange = event => {
