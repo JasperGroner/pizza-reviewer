@@ -8,9 +8,8 @@ class Upload extends Model {
 	static get jsonSchema(){
 		return {
 			type: "object",
-			required: ["title", "image"],
+			required: ["image"],
 			properties: {
-					title: { type: "string" },
 					image: { type: "string" }
 			}
 		}
