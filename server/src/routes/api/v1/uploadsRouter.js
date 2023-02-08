@@ -21,7 +21,6 @@ uploadsRouter.post("/", uploadImage.single("image"), async(req, res) => {
 			...body,
 			image: req.file.location,
 		}
-		 console.log(req.file.location)
 
 		 const upload = await Upload.query().insertAndFetch(data)
 		 return res.status(201).json({ upload })
