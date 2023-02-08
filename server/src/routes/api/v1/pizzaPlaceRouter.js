@@ -52,6 +52,7 @@ pizzaPlaceRouter.delete("/:id", async (req, res) => {
 
 pizzaPlaceRouter.patch('/:id', async (req, res) => {
 	const body = req.body
+	body.id = req.params.id
 	const formInput = cleanUserInput(body)
 	try{
 		const editedPizzaPlace = await PizzaPlace.query().patchAndFetchById(formInput.id, {
@@ -64,6 +65,7 @@ pizzaPlaceRouter.patch('/:id', async (req, res) => {
 		})
 		return res.status(200).json({editedPizzaPlace: editedPizzaPlace})
 	}catch(error) {
+		console.log(error)
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })
     }

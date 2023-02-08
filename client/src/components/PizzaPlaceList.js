@@ -18,6 +18,8 @@ const PizzaPlaceList = (props) => {
     }
   }
 
+  console.log(pizzaPlacesList)
+
   const deletePizzaPlace = async (id) => {
     try {
 			const response = await fetch(`/api/v1/pizza-places/${id}`, {
@@ -45,6 +47,7 @@ const PizzaPlaceList = (props) => {
       pizzaPlace={pizzaPlace} 
       key={pizzaPlace.id} 
       deletePizzaPlace={deletePizzaPlace}
+      pizzaPlacesList={pizzaPlacesList}
       setPizzaPlacesList={setPizzaPlacesList} />
     )
   })

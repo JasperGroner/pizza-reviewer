@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import EditPizzaPlaceForm from "./EditPizzaPlaceForm.js";
-const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, setPizzaPlacesList }) => {
+const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, setPizzaPlacesList }) => {
 	const [editForm, setEditForm] = useState(null)
 
 	const handleDeletePlaceClick = event => {
@@ -10,11 +10,14 @@ const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, setPizzaPlacesList }
 	}
 
 	const handleEditPlaceClick = event => {
+		console.log(pizzaPlace.id)
 		event.preventDefault()
 		if(!editForm) {
 			setEditForm(
 				<EditPizzaPlaceForm 
 				pizzaPlace={pizzaPlace} 
+				pizzaId={pizzaPlace.id}
+				pizzaPlacesList={pizzaPlacesList}
 				setPizzaPlacesList={setPizzaPlacesList}
 				setEditForm={setEditForm}/>
 			)

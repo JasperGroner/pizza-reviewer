@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
-import { useParams } from "react-router-dom"
+import React, { useState, useEffect } from 'react'
 import translateServerErrors from '../services/translateServerErrors.js'
 import ErrorList from './layout/ErrorList.js'
 
-const EditPizzaPlaceForm = ({ pizzaPlace, setPizzaPlacesList, setEditForm }) => {
-	const { name, address, phoneNumber, website, hours, imageUrl } = pizzaPlace
+const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPlacesList, setEditForm }) => {
+	const { name, address, phoneNumber, website, hours, imageUrl} = pizzaPlace
   const [editedPizzaPlace, setEditedPizzaPlace] = useState({
     name: name,
 		address: address,
@@ -14,19 +12,16 @@ const EditPizzaPlaceForm = ({ pizzaPlace, setPizzaPlacesList, setEditForm }) => 
 		hours: hours ?? "",
 		imageUrl: imageUrl ?? ""
   })
-  const [shouldRedirect, setShouldRedirect] = useState(false)
 	const [errors, setErrors] = useState({})
-	const pizzaId = useParams().id
 
-	const editPizzaPlace = async (editedPizzaPlaceData) => {
-		
+	const editPizzaPlace = async (editedPizzaPlace) => {
     try {
       const response = await fetch(`/api/v1/pizza-places/${pizzaId}`, {
         method: "PATCH",
         headers: new Headers({
           "Content-Type": "application/json"
         }),
-        body: JSON.stringify(editedPizzaPlaceData)
+        body: JSON.stringify(editedPizzaPlace)
       })
       if (!response.ok) { 
         if (response.status === 422){
@@ -48,8 +43,13 @@ const EditPizzaPlaceForm = ({ pizzaPlace, setPizzaPlacesList, setEditForm }) => 
 	const handleSubmit = async event => {
 		event.preventDefault()
 		const newlyEditedPizzaPlace = await editPizzaPlace(editedPizzaPlace)
-		const updateId = newlyEditedPizzaPlace.id
-	
+		const editedPizzaPlacesList = pizzaPlacesList
+		const updateId = pizzaPlacesList.findIndex(element => element.id === newlyEditedPizzaPlace.id)
+		editedPizzaPlacesList[updateId] = newlyEditedPizzaPlace
+		setPizzaPlacesList(
+			editedPizzaPlacesList
+		)
+		setEditForm(null)
 	}
 
 	const handleInputChange = event => {
@@ -58,6 +58,10 @@ const EditPizzaPlaceForm = ({ pizzaPlace, setPizzaPlacesList, setEditForm }) => 
 			[event.currentTarget.name]: event.currentTarget.value
 		})
 	}
+	
+	useEffect(() => {
+		handleSubmit()
+	}, [])
 
   return (
     <form onSubmit={handleSubmit} >
@@ -127,5 +131,6 @@ const EditPizzaPlaceForm = ({ pizzaPlace, setPizzaPlacesList, setEditForm }) => 
 	</form>
   )
 }
+
 
 export default EditPizzaPlaceForm
