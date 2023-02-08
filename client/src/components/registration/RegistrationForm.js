@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormError from "../layout/FormError";
 import config from "../../config";
+import UploadsList from "../../uploads/UploadsList.js";
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
@@ -154,6 +155,8 @@ const RegistrationForm = () => {
             />
             <FormError error={errors.passwordConfirmation} />
           </label>
+
+          <UploadsList />
 
           <input type="submit" className="button" value="Register" />
       </form>
