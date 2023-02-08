@@ -29,9 +29,9 @@ const PizzaPlaceList = (props) => {
 			if (!response.ok) {
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
-      // setPizzaPlacesList([
-      //   pizzaPlacesList : pizzaPlacesList.filter(pizzaPlace => pizzaPlace.id !== id)
-      // ])
+      setPizzaPlacesList([
+        ...pizzaPlacesList
+      ])
 		} catch(error) {
 			console.error(`Error in fetch: ${error.message}`)
 		}
@@ -43,7 +43,11 @@ const PizzaPlaceList = (props) => {
 
   const pizzaPlaceReact = pizzaPlacesList.map(pizzaPlace => {
     return (
-      <PizzaPlaceListItem pizzaPlace={pizzaPlace} key={pizzaPlace.id} deletePizzaPlace={deletePizzaPlace} />
+      <PizzaPlaceListItem 
+      pizzaPlace={pizzaPlace} 
+      key={pizzaPlace.id} 
+      deletePizzaPlace={deletePizzaPlace}
+      setPizzaPlacesList={setPizzaPlacesList} />
     )
   })
 
