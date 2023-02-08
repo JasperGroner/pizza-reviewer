@@ -15,7 +15,8 @@ pizzaPlaceReviewRouter.post("/", async (req, res) => {
   const formInput = cleanUserInput(body)
   try {
     const newPizzaReview = await Review.query().insertAndFetch(formInput)
-    return res.status(201).json({newPizzaReview})
+    const serializedNewPizzaReview = await ReviewSerialzer.getDetail(newPizzaReview)
+    return res.status(201).json({newPizzaReview: serializedNewPizzaReview})
   } catch(error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })
