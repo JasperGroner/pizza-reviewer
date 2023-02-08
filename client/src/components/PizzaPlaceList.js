@@ -7,7 +7,7 @@ const PizzaPlaceList = (props) => {
   const getPizzaPlaces = async () => {
     try {
       const response = await fetch("/api/v1/pizza-places")
-      if(!response.ok) {
+      if (!response.ok) {
         throw new Error(`${response.status} (${response.statusText})`)
       } else {
         const body = await response.json()
@@ -29,11 +29,12 @@ const PizzaPlaceList = (props) => {
   })
 
   return (
-    <div className='pizza-list'>
+    <div className='centered-content'>
       <h1>Pizza Place List</h1>
       {pizzaPlaceReact}
       <Link to='/pizza-places/new'> Add New Pizza Place </Link>
     </div>
+
   )
 }
 
