@@ -1,39 +1,13 @@
 import React, { useEffect, useState } from "react"
 import Dropzone from "react-dropzone"
 
-import UploadTile from "./UploadTile.js"
-
-const UploadsList = (props) =>{
-	const [uploads, setUploads] = useState ([])
+const ChangeUserImage = (props) =>{
 	const [newUploadFormData, setNewUploadFormData] = useState({
 		image: {}
 	})
 
-	const getUploads = async () =>{
-		try {
-			const response = await fetch("/api/v1/uploads")
-			if (!response.ok){
-				throw new Error(`{response.status} (${response.statusText})`)
-			}
-			const body = await response.json()
-			setUploads(body.uploads)
-		} catch (error){
-			console.error(`Error in getFileUploads Fetch: ${error.message}`)
-		}
-	}
-
-	useEffect(()=>{
-			getUploads()
-	}, [])
-
-	const uploadTiles = uploads.map((upload)=>{
-		return (
-			<UploadTile
-				key={upload.id}
-				upload={upload}
-			/>
-		)
-	})
+	const [image, setImage] = useState()
+	const [shouldRedirect, setShouldRedirect] = useState(false)
 
 	const handleImageUpload = (acceptedImage)=>{
 		setNewUploadFormData({
@@ -47,8 +21,8 @@ const UploadsList = (props) =>{
 		const newUploadBody = new FormData()
 		newUploadBody.append("image", newUploadFormData.image)
 		try {
-			const response = await fetch("/api/v1/uploads",{
-				method: "POST",
+			const response = await fetch("/api/v1/users",{
+				method: "PATCH",
 				headers: {
 					"Accept": "image/jpeg"
 				},
@@ -58,17 +32,20 @@ const UploadsList = (props) =>{
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
 			const body = await response.json()
-			setUploads([
-				...uploads,
-				body.upload
-			])
+			console.log(body.updatedUser.image)
+			setImage(body.updatedUser.image)
+			setShouldRedirect(true)
 		} catch (error) {
 			console.error(`Error in addUpload Fetch: ${error.message}`)
 		}
 	}
 
+	if (shouldRedirect) {
+		location.href = "/"
+	}
+	
 	return (
-		<div>
+		<div className="centered-content">
 			<h5>Profile Image Uploads</h5>
 
 			<form className="load primary" onSubmit={addUpload}>
@@ -84,14 +61,14 @@ const UploadsList = (props) =>{
 					)}
 				</Dropzone>
 
-				<input className="button" type="submit" value="Add" />
+				<input className="button" type="submit" value="Change Profile Image" />
 			</form>
 
 			<div>
-				{uploadTiles}
+				<img src={image} />
 			</div>
 		</div>
 	)
 }
 
-export default UploadsList
+export default ChangeUserImage

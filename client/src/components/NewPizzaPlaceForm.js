@@ -72,7 +72,7 @@ const NewPizzaPlaceForm = () => {
 	}
 
 	return (
-	<form onSubmit={handleSubmit} >
+	<form onSubmit={handleSubmit} className="centered-content">
 		<ErrorList errors={errors}/>
 		<label htmlFor='name'>
 			Name:
