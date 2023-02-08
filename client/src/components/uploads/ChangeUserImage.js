@@ -32,7 +32,6 @@ const ChangeUserImage = (props) =>{
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
 			const body = await response.json()
-			console.log(body.updatedUser.image)
 			setImage(body.updatedUser.image)
 			setShouldRedirect(true)
 		} catch (error) {
@@ -63,10 +62,7 @@ const ChangeUserImage = (props) =>{
 
 				<input className="button" type="submit" value="Change Profile Image" />
 			</form>
-
-			<div>
-				<img src={image} />
-			</div>
+			<img src={image} />
 		</div>
 	)
 }

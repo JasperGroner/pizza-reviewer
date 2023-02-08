@@ -167,9 +167,9 @@ const RegistrationForm = () => {
           <input type="submit" className="button" value="Register" />
       </form>
       <UploadUserImage 
-            setUserPayload={setUserPayload}
-            userPayload={userPayload}
-          />
+        setUserPayload={setUserPayload}
+        userPayload={userPayload}
+      />
     </div>
   );
 };

@@ -22,7 +22,7 @@ const UploadUserImage = ({ userPayload, setUserPayload }) =>{
 	}
 
 	return (
-		<div>
+		<>
 			<h5>Profile Image Uploads</h5>
 
 			<form className="load primary" onSubmit={addUpload}>
@@ -40,7 +40,7 @@ const UploadUserImage = ({ userPayload, setUserPayload }) =>{
 
 				<input className="button" type="submit" value="Add" />
 			</form>
-		</div>
+		</>
 	)
 }
 

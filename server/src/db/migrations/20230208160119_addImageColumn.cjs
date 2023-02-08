@@ -6,7 +6,7 @@
  * @param {Knex} knex
  */
 exports.up = async (knex) => {
-  return knex.schema.table('users', table=> {
+  return knex.schema.table('users', table => {
     table.string("image")
   })
 }
