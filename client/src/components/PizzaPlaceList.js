@@ -53,11 +53,16 @@ const PizzaPlaceList = (props) => {
     )
   })
 
+  let link
+  if (currentUser) {
+    link = <Link to='/pizza-places/new'> Add New Pizza Place </Link>
+  }
+
   return (
     <div className='centered-content'>
       <h1>Pizza Place List</h1>
       {pizzaPlaceReact}
-      <Link to='/pizza-places/new'> Add New Pizza Place </Link>
+      {link}
     </div>
 
   )
