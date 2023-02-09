@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import EditReviewForm from './EditReviewForm'
 import PizzaImageArray from './PizzaImageArray'
+import downPizza from "../assets/downpizza.png"
+import upPizza from "../assets/uppizza.png"
 
 const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, voteCount, currentUser, deleteReview, pizzaPlace, setPizzaPlace, image }) => {
 
@@ -88,19 +90,25 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
 
   let upvoteButton, downvoteButton
   if (currentUser) {
-    upvoteButton = <input className='button' type='button' value='Upvote' onClick={handleUpvoteClick}/>
-    downvoteButton = <input className='button' type='button' value='Downvote' onClick={handleDownvoteClick}/>
+    upvoteButton = (<button onClick={handleUpvoteClick}>
+      <img src={upPizza} className="vote-button-image"/>
+    </button>)
+    downvoteButton = (<button onClick={handleDownvoteClick} className="vote-button">
+      <img src={downPizza} className="vote-button-image"/>
+    </button>)
   }
 
   return (
     <div className="review-tile">
-        {upvoteButton}
-        {downvoteButton}
-        <p>Vote count: {voteCount}</p>
-        <h6>Title: {title}</h6>
-        <p>Review by: {firstName} {lastName} <img className="user-image" src={image} /></p>
+        <p>
+          {upvoteButton}
+          {downvoteButton} 
+          <span className="vote-count">{voteCount}</span>
+          <span className="review-title">{title}</span>
+        </p>
+        <p>{text}</p>
         <p>Rating: <PizzaImageArray rating={rating}/></p>
-        <p>User Review: {text}</p>
+        <p>Review by: {firstName} {lastName} <img className="user-image" src={image} /></p>
         {editButton}
         {deleteButton}
         {editForm}
