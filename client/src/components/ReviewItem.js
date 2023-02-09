@@ -9,24 +9,22 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
 
   const pizzaId = useParams().id
 
-
   const editClickHandler = event => {
     event.preventDefault()
     setShowEditForm(showEditForm ? false : true)
   }
 
-
   let editForm
   if(showEditForm) {
     editForm = <EditReviewForm
-    reviewId={id}
-    title={title}
-    rating={rating}
-    text={text}s
-    pizzaPlace={pizzaPlace}
-    setPizzaPlace={setPizzaPlace}
-    setShowEditForm={setShowEditForm}
-  />
+      reviewId={id}
+      title={title}
+      rating={rating}
+      text={text}s
+      pizzaPlace={pizzaPlace}
+      setPizzaPlace={setPizzaPlace}
+      setShowEditForm={setShowEditForm}
+    />
   }
 
   let editButton
