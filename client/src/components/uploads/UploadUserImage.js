@@ -2,39 +2,22 @@ import React, { useEffect, useState } from "react"
 import Dropzone from "react-dropzone"
 
 const UploadUserImage = ({ userPayload, setUserPayload }) =>{
-	const [newUploadFormData, setNewUploadFormData] = useState({
-		image: {}
-	})
 
 	const [source, setSource] = useState("")
-	const [buttonValue, setButtonValue] = useState("Add Image")
 
 	const handleImageUpload = (acceptedImage) => {
-		setNewUploadFormData({
-			...newUploadFormData,
-			image: acceptedImage[0]
-		})
-		const reader = new FileReader()
-		reader.onload = () => {
-			setSource(reader.result)
-		} 
-		reader.readAsDataURL(acceptedImage[0])
-	}
-
-	const addUpload = (event) => {
-		event.preventDefault()
+		setSource(URL.createObjectURL(acceptedImage[0]))
 		setUserPayload({
 			...userPayload,
-			image: newUploadFormData.image
+			image: acceptedImage[0]
 		})
-		setButtonValue("Image Added!")
 	}
 
 	return (
 		<>
 			<h5>Profile Image Uploads</h5>
 
-			<form className="load primary" onSubmit={addUpload}>
+			<form className="load primary">
 
 				<Dropzone onDrop={handleImageUpload}>
 					{({getRootProps, getInputProps})=>(
@@ -49,7 +32,6 @@ const UploadUserImage = ({ userPayload, setUserPayload }) =>{
 				<p>
 					Preview: <img src={source} />
 				</p>
-				<input className="button" type="submit" value={buttonValue} />
 			</form>
 		</>
 	)

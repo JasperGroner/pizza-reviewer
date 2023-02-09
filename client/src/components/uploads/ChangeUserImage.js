@@ -10,15 +10,11 @@ const ChangeUserImage = (props) =>{
 	const [shouldRedirect, setShouldRedirect] = useState(false)
 
 	const handleImageUpload = (acceptedImage)=>{
+		setSource(URL.createObjectURL(acceptedImage[0]))
 		setNewUploadFormData({
 			...newUploadFormData,
 			image: acceptedImage[0]
 		})
-		const reader = new FileReader()
-		reader.onload = () => {
-			setSource(reader.result)
-		} 
-		reader.readAsDataURL(acceptedImage[0])
 	}
 
 	const addUpload = async (event)=>{
