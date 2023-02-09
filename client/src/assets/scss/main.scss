@@ -1,5 +1,6 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Nunito+Sans&display=swap');
 @include foundation-everything;
 // place global css here
 $pizza-green: #3F8D37;
@@ -19,13 +20,14 @@ $pizza-red: #BB3E00;
 }
 
 body {
-  background-color: $pizza-beige;
-  color: $pizza-red;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: white;
+  color: black;
+  font-family: 'Dosis', sans-serif;
+  font-size: 18px;
 }
 
 a {
-  color: $pizza-red; 
+  color: black; 
 }
 
 a:hover, a:active, a:focus {
@@ -33,14 +35,16 @@ a:hover, a:active, a:focus {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Dosis', sans-serif;
 }
 
 h1 {
   font-size: 48px;
+  margin: 1rem
 }
 
-h6 {
+.review-title {
+  margin: 0 1rem;
   font-size: 24px;
 }
 
@@ -50,11 +54,27 @@ h6 {
 
 .button {
   background-color: $pizza-green;
-  border: solid $pizza-orange 1px;
+  font-size: 18px;
+  margin: 8px;
+  border-radius: 1rem;
 }
 
 .button:hover, .button:active, .button:focus {
   background-color: $pizza-red;
+}
+
+.pizza-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pizza-place-tile {
+  background-color: $pizza-orange;
+  width: 30%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
 }
 
 .reviews-list {
@@ -63,17 +83,16 @@ h6 {
 }
 
 .review-tile {
-  background-color: $pizza-red;
-  color: $pizza-beige;
+  background-color: $pizza-orange;
+  color: $black;
   width: 49%;
-  border: 4px solid $pizza-orange;
-  border-radius: 15%;
+  border-radius: 4rem;
   margin: 1rem auto;
   padding: 2rem 1rem 1rem 1rem;
 }
 
 .review-tile h6{
-  color: #FFF1D7
+  color: black
 }
 
 .review-form {
@@ -85,10 +104,6 @@ h6 {
   max-height: 3rem;
   display: block;
   margin: 0 auto;
-}
-
-.pizza-list-item {
-  list-style-type: none;
 }
 
 .centered-content {
@@ -109,9 +124,10 @@ h6 {
   margin: 1rem 3rem;
 }
 
-.show-page-mage {
+.show-page-image {
   max-width: 50%;
-  margin: 1rem 3rem;
+  height: auto;
+  margin: 1rem 3rem auto;
 }
 
 .pizza-star {
@@ -120,4 +136,20 @@ h6 {
 
 .user-image {
   height: 2.5rem;
+}
+
+.vote-button-image {
+  height: 2em;
+}
+
+.vote-button-image:hover {
+  cursor: pointer;
+}
+
+.vote-count {
+  font-size: 20px;
+}
+
+.top-bar-margin {
+  margin-top: 0.4rem;
 }
