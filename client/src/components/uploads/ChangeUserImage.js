@@ -6,7 +6,7 @@ const ChangeUserImage = (props) =>{
 		image: {}
 	})
 
-	const [image, setImage] = useState()
+	const [source, setSource] = useState("")
 	const [shouldRedirect, setShouldRedirect] = useState(false)
 
 	const handleImageUpload = (acceptedImage)=>{
@@ -14,6 +14,11 @@ const ChangeUserImage = (props) =>{
 			...newUploadFormData,
 			image: acceptedImage[0]
 		})
+		const reader = new FileReader()
+		reader.onload = () => {
+			setSource(reader.result)
+		} 
+		reader.readAsDataURL(acceptedImage[0])
 	}
 
 	const addUpload = async (event)=>{
@@ -32,7 +37,6 @@ const ChangeUserImage = (props) =>{
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
 			const body = await response.json()
-			setImage(body.updatedUser.image)
 			setShouldRedirect(true)
 		} catch (error) {
 			console.error(`Error in addUpload Fetch: ${error.message}`)
@@ -59,10 +63,11 @@ const ChangeUserImage = (props) =>{
 						</section>
 					)}
 				</Dropzone>
-
+				<p>
+					Preview: <img src={source} />
+				</p>
 				<input className="button" type="submit" value="Change Profile Image" />
 			</form>
-			<img src={image} />
 		</div>
 	)
 }

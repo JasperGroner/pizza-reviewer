@@ -6,19 +6,28 @@ const UploadUserImage = ({ userPayload, setUserPayload }) =>{
 		image: {}
 	})
 
-	const handleImageUpload = (acceptedImage)=>{
+	const [source, setSource] = useState("")
+	const [buttonValue, setButtonValue] = useState("Add Image")
+
+	const handleImageUpload = (acceptedImage) => {
 		setNewUploadFormData({
 			...newUploadFormData,
 			image: acceptedImage[0]
 		})
+		const reader = new FileReader()
+		reader.onload = () => {
+			setSource(reader.result)
+		} 
+		reader.readAsDataURL(acceptedImage[0])
 	}
 
-	const addUpload = (event)=>{
+	const addUpload = (event) => {
 		event.preventDefault()
 		setUserPayload({
 			...userPayload,
 			image: newUploadFormData.image
 		})
+		setButtonValue("Image Added!")
 	}
 
 	return (
@@ -37,8 +46,10 @@ const UploadUserImage = ({ userPayload, setUserPayload }) =>{
 						</section>
 					)}
 				</Dropzone>
-
-				<input className="button" type="submit" value="Add" />
+				<p>
+					Preview: <img src={source} />
+				</p>
+				<input className="button" type="submit" value={buttonValue} />
 			</form>
 		</>
 	)
