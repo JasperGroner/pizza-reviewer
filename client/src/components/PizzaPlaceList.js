@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 const PizzaPlaceList = (props) => {
   const currentUser = props.currentUser
-  console.log("go fuck yourself", props)
   const [pizzaPlacesList, setPizzaPlacesList] = useState([])
 
   const getPizzaPlaces = async () => {

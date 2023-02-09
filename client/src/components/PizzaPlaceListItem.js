@@ -26,7 +26,7 @@ const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, set
 
 	let deleteButton
 	let editButton 
-  if (currentUser) {
+  if (currentUser && currentUser.id === pizzaPlace.userId) {
 		editButton =  <input className='button' type='button' value='Edit' onClick={handleEditPlaceClick}/>
     deleteButton = <input className='button' type='button' value='Delete' onClick={handleDeletePlaceClick}/>
   }

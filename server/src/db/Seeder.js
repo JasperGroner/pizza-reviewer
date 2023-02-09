@@ -7,8 +7,8 @@ import UserSeeder from "./seeders/UserSeeder.js"
 class Seeder {
   static async seed() {
     // include individual seed commands here
-    await PizzaPlaceSeeder.seed()
     await UserSeeder.seed()
+    await PizzaPlaceSeeder.seed()
     await ReviewSeeder.seed()
     
     console.log("Done!")
