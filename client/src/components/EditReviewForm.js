@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import ErrorList from "./layout/ErrorList";
 import PizzaImageArray from "./PizzaImageArray";
 
-const EditReviewForm = ({ reviewId, title, text, rating, setEditForm, pizzaPlace, setPizzaPlace}) => {
+const EditReviewForm = ({ reviewId, title, text, rating, setShowEditForm, pizzaPlace, setPizzaPlace}) => {
   
   const [editedReview, setEditedReview] = useState({
     rating: rating,
@@ -51,7 +51,7 @@ const EditReviewForm = ({ reviewId, title, text, rating, setEditForm, pizzaPlace
       ...pizzaPlace,
       reviews: editedReviews
     })
-    setEditForm(null)
+    setShowEditForm(false)
   }
 
   const handleInputChange = event => {

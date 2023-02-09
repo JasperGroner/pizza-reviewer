@@ -5,27 +5,26 @@ import PizzaImageArray from './PizzaImageArray'
 
 const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, voteCount, currentUser, deleteReview, pizzaPlace, setPizzaPlace, image }) => {
 
-  const [editForm, setEditForm] = useState(null)
+  const [showEditForm, setShowEditForm] = useState(false)
 
   const pizzaId = useParams().id
 
   const editClickHandler = event => {
     event.preventDefault()
-    if(!editForm) {
-      setEditForm(
-        <EditReviewForm
-          reviewId={id}
-          title={title}
-          rating={rating}
-          text={text}
-          pizzaPlace={pizzaPlace}
-          setPizzaPlace={setPizzaPlace}
-          setEditForm={setEditForm}
-        />
-      )
-    } else {
-      setEditForm(null)
-    }
+    setShowEditForm(showEditForm ? false : true)
+  }
+
+  let editForm
+  if(showEditForm) {
+    editForm = <EditReviewForm
+      reviewId={id}
+      title={title}
+      rating={rating}
+      text={text}s
+      pizzaPlace={pizzaPlace}
+      setPizzaPlace={setPizzaPlace}
+      setShowEditForm={setShowEditForm}
+    />
   }
 
   let editButton
