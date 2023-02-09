@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom'
 import EditReviewForm from './EditReviewForm'
 import PizzaImageArray from './PizzaImageArray'
 
-const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, voteCount, currentUser, deleteReview, pizzaPlace, setPizzaPlace }) => {
+const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, voteCount, currentUser, deleteReview, pizzaPlace, setPizzaPlace, image }) => {
+
   const [editForm, setEditForm] = useState(null)
 
   const pizzaId = useParams().id
@@ -98,7 +99,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
         {downvoteButton}
         <p>Vote count: {voteCount}</p>
         <h6>Title: {title}</h6>
-        <p>Review by: {firstName} {lastName}</p>
+        <p>Review by: {firstName} {lastName} <img className="user-image" src={image} /></p>
         <p>Rating: <PizzaImageArray rating={rating}/></p>
         <p>User Review: {text}</p>
         {editButton}

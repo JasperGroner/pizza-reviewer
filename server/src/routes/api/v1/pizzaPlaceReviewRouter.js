@@ -5,6 +5,7 @@ import { Review } from "../../../models/index.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import ReviewSerialzer from "../../../serializers/ReviewSerializer.js"
 import pizzaPlaceReviewVotesRouter from "./pizzaPlaceReviewVotesRouter.js"
+import deleteReview from "../../../services/deleteReview.js"
 
 const pizzaPlaceReviewRouter = new express.Router({ mergeParams: true })
 
@@ -15,7 +16,8 @@ pizzaPlaceReviewRouter.post("/", async (req, res) => {
   const formInput = cleanUserInput(body)
   try {
     const newPizzaReview = await Review.query().insertAndFetch(formInput)
-    return res.status(201).json({newPizzaReview})
+    const serializedNewPizzaReview = await ReviewSerialzer.getDetail(newPizzaReview)
+    return res.status(201).json({newPizzaReview: serializedNewPizzaReview})
   } catch(error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })
@@ -46,7 +48,7 @@ pizzaPlaceReviewRouter.patch("/:reviewId", async (req, res) => {
 
 pizzaPlaceReviewRouter.delete("/:id", async (req, res) => {
   try {
-    await Review.query().deleteById(req.params.id)
+    await deleteReview(req.params.id)
     return res.status(204).json({message: 'deletion success'})
   } catch(error) {
 		return res.status(500).json({errors: error})

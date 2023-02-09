@@ -11,6 +11,7 @@ import TopBar from "./layout/TopBar";
 import PizzaPlaceList from "./PizzaPlaceList.js";
 import PizzaPlaceShow from "./PizzaPlaceShow.js";
 import NewPizzaPlaceForm from "./NewPizzaPlaceForm.js";
+import ChangeUserImage from "./uploads/ChangeUserImage"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -41,6 +42,7 @@ const App = (props) => {
         />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+        <Route exact path="/users/image" component={ChangeUserImage}/>
       </Switch>
     </Router>
   );

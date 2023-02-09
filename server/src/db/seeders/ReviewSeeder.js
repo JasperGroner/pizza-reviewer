@@ -21,7 +21,6 @@ class ReviewSeeder {
             {   
                 pizzaPlaceId: venice.id,
                 userId: user2.id,
-                pizzaPlaceId: boulevard.id,
                 rating: "5",
                 title: "Best pizza!",
                 text: "New way to start your meal!"
@@ -29,7 +28,6 @@ class ReviewSeeder {
             {   
                 pizzaPlaceId: venice.id,
                 userId: user3.id,
-                pizzaPlaceId: venice.id,
                 rating: "4",
                 title: "Best pizza ever have. It make my day!",
                 text: "Good place and value for every cent"

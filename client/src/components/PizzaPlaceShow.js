@@ -75,7 +75,7 @@ const PizzaPlaceShow = props => {
 	}) 
 
 	return (
-		<div className="show-page">
+		<div className="centered-content">
 			<h1>{pizzaPlace.name}</h1>
 			<div className="show-page-flex">
 				<div className="show-page-info">

@@ -32,7 +32,8 @@ class User extends uniqueFunc(Model) {
         email: { type: "string" },
         cryptedPassword: { type: "string" },
         firstName: { type: 'string', minLength: 1 },
-        lastName: { type: 'string', minLength: 1 }
+        lastName: { type: 'string', minLength: 1 },
+        image: {type: 'string'}
       },
     };
   }

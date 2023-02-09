@@ -7,9 +7,10 @@ const rootRouter = new express.Router();
 
 rootRouter.use("/api/v1/user-sessions", userSessionsRouter);
 rootRouter.use("/api/v1/users", usersRouter);
-rootRouter.use("/api/v1/pizza-places", pizzaPlaceRouter)
+rootRouter.use("/api/v1/pizza-places", pizzaPlaceRouter);
 //place your server-side routes here
 
 rootRouter.use("/", clientRouter);
 
 export default rootRouter;
+
