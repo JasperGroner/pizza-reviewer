@@ -21,8 +21,6 @@ const PizzaPlaceList = (props) => {
     }
   }
 
-  console.log(pizzaPlacesList)
-
   const deletePizzaPlace = async (id) => {
     try {
 			const response = await fetch(`/api/v1/pizza-places/${id}`, {

@@ -33,6 +33,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
         }
       } else {
         const body = await response.json()
+				console.log(body.editedPizzaPlace)
         return body.editedPizzaPlace
       }
     } catch(error) {
