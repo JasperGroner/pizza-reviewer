@@ -6,7 +6,9 @@ import SignedInUserImageTile from "../SignedInUserImageTile";
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
     <li key="sign-in">
-      <Link to="/user-sessions/new">Sign In</Link>
+      <Link to="/user-sessions/new" className="top-bar-margin">
+        Sign In
+      </Link>
     </li>,
     <li key="sign-up">
       <Link to="/users/new" className="button">
@@ -16,10 +18,10 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
-      <li key="user-image">
+      <li key="user-image" className="top-bar-margin">
         <SignedInUserImageTile />
       </li>,
-      <li key="change-image">
+      <li key="change-image" className="top-bar-margin">
         <Link to="/users/image">Change User Image</Link>
       </li>,
       <li key="sign-out">
@@ -31,7 +33,7 @@ const TopBar = ({ user }) => {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">App</li>
+          <li className="menu-text">Pizza Places Reviews!</li>
           <li>
             <Link to="/">Home</Link>
           </li>

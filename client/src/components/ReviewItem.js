@@ -101,7 +101,6 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
 
   return (
     <div className="review-tile">
-        
         <p>
           {upvoteButton}
           {downvoteButton} 
