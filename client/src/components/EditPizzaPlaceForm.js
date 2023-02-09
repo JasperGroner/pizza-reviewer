@@ -33,7 +33,6 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
         }
       } else {
         const body = await response.json()
-				console.log(body.editedPizzaPlace)
         return body.editedPizzaPlace
       }
     } catch(error) {
@@ -44,10 +43,9 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 	const handleSubmit = async event => {
 		event.preventDefault()
 		const newlyEditedPizzaPlace = await editPizzaPlace(editedPizzaPlace)
-		const editedPizzaPlacesList = pizzaPlacesList
+		const editedPizzaPlacesList = [...pizzaPlacesList]
 		const updateId = pizzaPlacesList.findIndex(element => element.id === newlyEditedPizzaPlace.id)
 		editedPizzaPlacesList[updateId] = newlyEditedPizzaPlace
-		console.log(editedPizzaPlacesList)
 		setPizzaPlacesList(editedPizzaPlacesList)
 		setShowEditPlaceForm(false)
 	}
@@ -127,6 +125,5 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 		</form>
   )
 }
-
 
 export default EditPizzaPlaceForm

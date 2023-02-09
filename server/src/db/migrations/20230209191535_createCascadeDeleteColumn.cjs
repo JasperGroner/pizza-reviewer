@@ -16,7 +16,7 @@ exports.up = async (knex) => {
  * @param {Knex} knex
  */
 exports.down = (knex) => {
-  return knex.schema.table('reviews', table => {
+  return knex.schema.alterTable('reviews', table => {
     table.dropForeign("pizzaPlaceId")
     table.foreign("pizzaPlaceId").references("pizzaPlaces.id").onDelete("NO ACTION")
   })
