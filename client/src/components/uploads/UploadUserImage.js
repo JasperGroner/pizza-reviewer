@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import Dropzone from "react-dropzone"
 
 const UploadUserImage = ({ userPayload, setUserPayload }) =>{
