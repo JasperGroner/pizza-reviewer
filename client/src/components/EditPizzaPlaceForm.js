@@ -2,16 +2,9 @@ import React, { useState, useEffect } from 'react'
 import translateServerErrors from '../services/translateServerErrors.js'
 import ErrorList from './layout/ErrorList.js'
 
-const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPlacesList, setEditForm }) => {
+const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPlacesList, setShowEditPlaceForm }) => {
 	const { name, address, phoneNumber, website, hours, imageUrl} = pizzaPlace
-  const [editedPizzaPlace, setEditedPizzaPlace] = useState({
-    name: name,
-		address: address,
-		phoneNumber: phoneNumber,
-		website: website ?? "",
-		hours: hours ?? "",
-		imageUrl: imageUrl ?? ""
-  })
+  const [editedPizzaPlace, setEditedPizzaPlace] = useState(false)
 	const [errors, setErrors] = useState({})
 
 	const editPizzaPlace = async (editedPizzaPlace) => {
@@ -49,7 +42,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 		setPizzaPlacesList(
 			editedPizzaPlacesList
 		)
-		setEditForm(null)
+		setShowEditPlaceForm(false)
 	}
 
 	const handleInputChange = event => {
@@ -59,9 +52,9 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 		})
 	}
 	
-	useEffect(() => {
-		handleSubmit()
-	}, [])
+	// useEffect(() => {
+	// 	handleSubmit()
+	// }, [])
 
   return (
     <form onSubmit={handleSubmit} >
@@ -72,7 +65,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 				type='text' 
 				name='name'
 				onChange={handleInputChange} 
-				value={editedPizzaPlace.name}
+				value={name}
 			/>
 		</label>
 
@@ -82,7 +75,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 				type='text' 
 				name='address'
 				onChange={handleInputChange} 
-				value={editedPizzaPlace.address}
+				value={address}
 			/>
 		</label>
 
@@ -92,7 +85,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 				type='text' 
 				name='phoneNumber'
 				onChange={handleInputChange} 
-				value={editedPizzaPlace.phoneNumber}
+				value={phoneNumber}
 			/>
 		</label>
 
@@ -102,7 +95,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 				type='text' 
 				name='website'
 				onChange={handleInputChange} 
-				value={editedPizzaPlace.website}
+				value={website}
 			/>
 		</label>
 
@@ -112,7 +105,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 				type='text' 
 				name='hours'
 				onChange={handleInputChange} 
-				value={editedPizzaPlace.hours}
+				value={hours}
 			/>
 		</label>
 
@@ -122,7 +115,7 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 				type='text' 
 				name='imageUrl'
 				onChange={handleInputChange} 
-				value={editedPizzaPlace.imageUrl}
+				value={imageUrl}
 			/>
 		</label>
 		
