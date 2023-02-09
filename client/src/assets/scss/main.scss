@@ -40,7 +40,8 @@ h1 {
   font-size: 48px;
 }
 
-h6 {
+.review-title {
+  margin: 0 1rem;
   font-size: 24px;
 }
 
@@ -120,4 +121,16 @@ h6 {
 
 .user-image {
   height: 2.5rem;
+}
+
+.vote-button-image {
+  height: 2em;
+}
+
+.vote-button-image:hover {
+  cursor: pointer;
+}
+
+.vote-count {
+  font-size: 20px;
 }
