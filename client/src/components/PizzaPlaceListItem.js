@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import EditPizzaPlaceForm from "./EditPizzaPlaceForm.js";
-const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, setPizzaPlacesList }) => {
+const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, setPizzaPlacesList, currentUser }) => {
 	const [showEditPlaceForm, setShowEditPlaceForm] = useState(false)
-
+	
 	const handleDeletePlaceClick = event => {
 		event.preventDefault()
 		deletePizzaPlace(pizzaPlace.id)
@@ -11,24 +11,25 @@ const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, set
 
 	const handleEditPlaceClick = event => {
 		event.preventDefault()
-		
-		if (showEditPlaceForm) {
-			setEditForm(
-				<EditPizzaPlaceForm 
-				pizzaPlace={pizzaPlace} 
-				pizzaId={pizzaPlace.id}
-				pizzaPlacesList={pizzaPlacesList}
-				setPizzaPlacesList={setPizzaPlacesList}
-				setShowEditPlaceForm={setShowEditPlaceForm}/>
-			)
-		}
+		setShowEditPlaceForm(showEditPlaceForm ? false : true)
 	}
 
-	let deleteButton =  <input className='button' type='button' value='Delete' onClick={handleDeletePlaceClick}/>
-	let editButton =  <input className='button' type='button' value='Edit' onClick={handleEditPlaceClick}/>
-  // if (currentUser && currentUser.id === userId) {
-  //   deleteButton = <input className='button' type='button' value='Delete' onClick={handleDeletePlaceClick}/>
-  // }
+	let editForm
+	if (showEditPlaceForm) {
+		editForm = <EditPizzaPlaceForm 
+			pizzaPlace={pizzaPlace} 
+			pizzaId={pizzaPlace.id}
+			pizzaPlacesList={pizzaPlacesList}
+			setPizzaPlacesList={setPizzaPlacesList}
+			setShowEditPlaceForm={setShowEditPlaceForm}/>
+	}		
+
+	let deleteButton
+	let editButton 
+  if (currentUser) {
+		editButton =  <input className='button' type='button' value='Edit' onClick={handleEditPlaceClick}/>
+    deleteButton = <input className='button' type='button' value='Delete' onClick={handleDeletePlaceClick}/>
+  }
 
 	return (
 		<div>

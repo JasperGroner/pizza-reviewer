@@ -4,7 +4,14 @@ import ErrorList from './layout/ErrorList.js'
 
 const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPlacesList, setShowEditPlaceForm }) => {
 	const { name, address, phoneNumber, website, hours, imageUrl} = pizzaPlace
-  const [editedPizzaPlace, setEditedPizzaPlace] = useState(false)
+  const [editedPizzaPlace, setEditedPizzaPlace] = useState({
+		name: name,
+		address: address,
+		phoneNumber: phoneNumber,
+		website: website ?? "",
+		hours: hours ?? "",
+		imageUrl: imageUrl ?? ""
+	})
 	const [errors, setErrors] = useState({})
 
 	const editPizzaPlace = async (editedPizzaPlace) => {
@@ -39,9 +46,8 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 		const editedPizzaPlacesList = pizzaPlacesList
 		const updateId = pizzaPlacesList.findIndex(element => element.id === newlyEditedPizzaPlace.id)
 		editedPizzaPlacesList[updateId] = newlyEditedPizzaPlace
-		setPizzaPlacesList(
-			editedPizzaPlacesList
-		)
+		console.log(editedPizzaPlacesList)
+		setPizzaPlacesList(editedPizzaPlacesList)
 		setShowEditPlaceForm(false)
 	}
 
@@ -51,77 +57,73 @@ const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPla
 			[event.currentTarget.name]: event.currentTarget.value
 		})
 	}
-	
-	// useEffect(() => {
-	// 	handleSubmit()
-	// }, [])
 
   return (
-    <form onSubmit={handleSubmit} >
-		<ErrorList errors={errors}/>
-		<label htmlFor='name'>
-			Name:
-			<input 
-				type='text' 
-				name='name'
-				onChange={handleInputChange} 
-				value={name}
-			/>
-		</label>
+		<form onSubmit={handleSubmit} >
+			<ErrorList errors={errors}/>
+			<label htmlFor='name'>
+				Name:
+				<input 
+					type='text' 
+					name='name'
+					onChange={handleInputChange} 
+					value={editedPizzaPlace.name}
+				/>
+			</label>
 
-		<label htmlFor='address'>
-			Address:
-			<input 
-				type='text' 
-				name='address'
-				onChange={handleInputChange} 
-				value={address}
-			/>
-		</label>
+			<label htmlFor='address'>
+				Address:
+				<input 
+					type='text' 
+					name='address'
+					onChange={handleInputChange} 
+					value={editedPizzaPlace.address}
+				/>
+			</label>
 
-		<label htmlFor='phoneNumber'>
-			Phone Number:
-			<input 
-				type='text' 
-				name='phoneNumber'
-				onChange={handleInputChange} 
-				value={phoneNumber}
-			/>
-		</label>
+			<label htmlFor='phoneNumber'>
+				Phone Number:
+				<input 
+					type='text' 
+					name='phoneNumber'
+					onChange={handleInputChange} 
+					value={editedPizzaPlace.phoneNumber}
+				/>
+			</label>
 
-		<label htmlFor='website'>
-			Website Address:
-			<input 
-				type='text' 
-				name='website'
-				onChange={handleInputChange} 
-				value={website}
-			/>
-		</label>
+			<label htmlFor='website'>
+				Website Address:
+				<input 
+					type='text' 
+					name='website'
+					onChange={handleInputChange} 
+					value={editedPizzaPlace.website}
+				/>
+			</label>
 
-		<label htmlFor='hours'>
-			Hours:
-			<input 
-				type='text' 
-				name='hours'
-				onChange={handleInputChange} 
-				value={hours}
-			/>
-		</label>
+			<label htmlFor='hours'>
+				Hours:
+				<input 
+					type='text' 
+					name='hours'
+					onChange={handleInputChange} 
+					value={editedPizzaPlace.hours}
+				/>
+			</label>
 
-		<label htmlFor='imageUrl'>
-			Add Photo (image url):
-			<input 
-				type='text' 
-				name='imageUrl'
-				onChange={handleInputChange} 
-				value={imageUrl}
-			/>
-		</label>
-		
-		<input className='button' type='submit' value='Submit' />
-		
-	</form>
+			<label htmlFor='imageUrl'>
+				Add Photo (image url):
+				<input 
+					type='text' 
+					name='imageUrl'
+					onChange={handleInputChange} 
+					value={editedPizzaPlace.imageUrl}
+				/>
+			</label>
+			
+			<input className='button' type='submit' value='Submit' />
+			
+		</form>
   )
 }
 

@@ -3,7 +3,10 @@ import PizzaPlaceListItem from './PizzaPlaceListItem.js'
 import { Link } from 'react-router-dom'
 
 const PizzaPlaceList = (props) => {
+  const currentUser = props.currentUser
+  console.log("go fuck yourself", props)
   const [pizzaPlacesList, setPizzaPlacesList] = useState([])
+
   const getPizzaPlaces = async () => {
     try {
       const response = await fetch("/api/v1/pizza-places")
@@ -46,6 +49,7 @@ const PizzaPlaceList = (props) => {
       <PizzaPlaceListItem 
       pizzaPlace={pizzaPlace} 
       key={pizzaPlace.id} 
+      currentUser={currentUser}
       deletePizzaPlace={deletePizzaPlace}
       pizzaPlacesList={pizzaPlacesList}
       setPizzaPlacesList={setPizzaPlacesList} />
