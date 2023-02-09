@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import Dropzone from "react-dropzone"
 
 const ChangeUserImage = (props) =>{
@@ -6,10 +6,11 @@ const ChangeUserImage = (props) =>{
 		image: {}
 	})
 
-	const [image, setImage] = useState()
+	const [source, setSource] = useState("")
 	const [shouldRedirect, setShouldRedirect] = useState(false)
 
 	const handleImageUpload = (acceptedImage)=>{
+		setSource(URL.createObjectURL(acceptedImage[0]))
 		setNewUploadFormData({
 			...newUploadFormData,
 			image: acceptedImage[0]
@@ -32,7 +33,6 @@ const ChangeUserImage = (props) =>{
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
 			const body = await response.json()
-			setImage(body.updatedUser.image)
 			setShouldRedirect(true)
 		} catch (error) {
 			console.error(`Error in addUpload Fetch: ${error.message}`)
@@ -59,10 +59,11 @@ const ChangeUserImage = (props) =>{
 						</section>
 					)}
 				</Dropzone>
-
+				<p>
+					Preview: <img src={source} />
+				</p>
 				<input className="button" type="submit" value="Change Profile Image" />
 			</form>
-			<img src={image} />
 		</div>
 	)
 }

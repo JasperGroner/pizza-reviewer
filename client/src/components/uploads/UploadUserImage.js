@@ -1,45 +1,34 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import Dropzone from "react-dropzone"
 
 const UploadUserImage = ({ userPayload, setUserPayload }) =>{
-	const [newUploadFormData, setNewUploadFormData] = useState({
-		image: {}
-	})
 
-	const handleImageUpload = (acceptedImage)=>{
-		setNewUploadFormData({
-			...newUploadFormData,
-			image: acceptedImage[0]
-		})
-	}
+	const [source, setSource] = useState("")
 
-	const addUpload = (event)=>{
-		event.preventDefault()
+	const handleImageUpload = (acceptedImage) => {
+		setSource(URL.createObjectURL(acceptedImage[0]))
 		setUserPayload({
 			...userPayload,
-			image: newUploadFormData.image
+			image: acceptedImage[0]
 		})
 	}
 
 	return (
 		<>
 			<h5>Profile Image Uploads</h5>
-
-			<form className="load primary" onSubmit={addUpload}>
-
-				<Dropzone onDrop={handleImageUpload}>
-					{({getRootProps, getInputProps})=>(
-						<section>
-							<div {...getRootProps()}>
-								<input {...getInputProps()} />
-								<p>Upload your profile Image- drag 'n' drop or click to upload</p>
-							</div>
-						</section>
-					)}
-				</Dropzone>
-
-				<input className="button" type="submit" value="Add" />
-			</form>
+			<Dropzone onDrop={handleImageUpload}>
+				{({getRootProps, getInputProps})=>(
+					<section>
+						<div {...getRootProps()}>
+							<input {...getInputProps()} />
+							<p>Upload your profile Image- drag 'n' drop or click to upload</p>
+						</div>
+					</section>
+				)}
+			</Dropzone>
+			<p>
+				Preview: <img src={source} />
+			</p>
 		</>
 	)
 }
