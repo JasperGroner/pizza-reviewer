@@ -46,7 +46,7 @@ William Vo
 
 Jasper Groner
 
-Technologies used: 
+## Technologies used: 
 
 Front End: ReactJS, Sass, HTML
 
