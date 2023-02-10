@@ -44,6 +44,10 @@ class Vote extends Model {
     let postedVote
     if (!voteExists) {
       postedVote = await Vote.query().insertAndFetch(newVote)
+    } else if (voteExists.vote === newVote.vote) {
+      postedVote = await Vote.query().patchAndFetchById(voteExists.id, {
+        vote: 0
+      })
     } else {
       postedVote = await Vote.query().patchAndFetchById(voteExists.id, {
         vote: newVote.vote

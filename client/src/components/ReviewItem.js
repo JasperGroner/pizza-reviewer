@@ -5,7 +5,7 @@ import PizzaImageArray from './PizzaImageArray'
 import downPizza from "../assets/downpizza.png"
 import upPizza from "../assets/uppizza.png"
 
-const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, voteCount, currentUser, deleteReview, pizzaPlace, setPizzaPlace, image }) => {
+const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, voteCount, currentUser, deleteReview, pizzaPlace, setPizzaPlace, image, userVote }) => {
 
   const [showEditForm, setShowEditForm] = useState(false)
 
@@ -59,7 +59,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
         }
       } else {
         const body = await response.json()
-        const newVoteCount = body.newVoteCount
+        const newVoteCount = body.serializedVotes.voteCount
         const editedReviews = pizzaPlace.reviews
         const updateID = editedReviews.findIndex(element => element.id === id)
         editedReviews[updateID].voteCount = newVoteCount 
@@ -88,15 +88,25 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
     deleteButton = <input className='button' type='button' value='Delete' onClick={handleDeleteClick}/>
   }
 
+  let upVoteDisplay = ""
+  let downVoteDisplay = ""
+  // if (userVoteCount ===  1) {
+  //   upVoteDisplay = "green-background"
+  // } else if (userVoteCount === -1 ) {
+  //   downVoteDisplay = "red-background"
+  // }
+
   let upvoteButton, downvoteButton
   if (currentUser) {
     upvoteButton = (<button onClick={handleUpvoteClick}>
-      <img src={upPizza} className="vote-button-image"/>
+      <img src={upPizza} className={`vote-button-image ${upVoteDisplay}`}/>
     </button>)
     downvoteButton = (<button onClick={handleDownvoteClick} className="vote-button">
-      <img src={downPizza} className="vote-button-image"/>
+      <img src={downPizza} className={`vote-button-image ${downVoteDisplay}`}/>
     </button>)
   }
+
+
 
   return (
     <div className="review-tile">

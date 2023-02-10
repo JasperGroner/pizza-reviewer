@@ -9,16 +9,16 @@ class PizzaPlaceSerializer extends Serializer {
 		return serializedPizzaPlaces
 	}
 
-	static async getDetail(pizzaPlace) {
+	static async getDetail(pizzaPlace, userId) {
 		try {
 			const serializedData = this.serialize(pizzaPlace, ["id", "name", "address", "phoneNumber", "website", "hours", "imageUrl"])
 			const reviews = await pizzaPlace.$relatedQuery("reviews")
-			const serializeReview = await Promise.all(
+			const serializedReviews = await Promise.all(
 				reviews.map(async (review) => {
-					return await ReviewSerialzer.getDetail(review)
+					return await ReviewSerialzer.getDetail(review, userId)
 				})
 			)
-			serializedData.reviews = serializeReview
+			serializedData.reviews = serializedReviews
 			return serializedData
 		} catch(error){
 			throw(error)
