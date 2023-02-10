@@ -32,8 +32,9 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path={["/", "/pizza-places"]} 
-        render={props => <PizzaPlaceList {...props} currentUser={currentUser}/>}
+        <Route
+          exact path={["/", "/pizza-places"]} 
+          render={props => <PizzaPlaceList {...props} currentUser={currentUser}/>}
         />
         <Route exact path="/pizza-places/new" component={NewPizzaPlaceForm} />
         <Route 

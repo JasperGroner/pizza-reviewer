@@ -44,10 +44,10 @@ pizzaPlaceRouter.get("/:id", async (req, res) => {
 })
 
 pizzaPlaceRouter.delete("/:id", async (req, res) => {
-	try{
+	try {
 		await PizzaPlace.query().deleteById(req.params.id)
     return res.status(204).json({message: 'deletion success'})
-	}catch(error) {
+	} catch(error) {
 		return res.status(500).json({errors: error})
 	}
 })
@@ -56,7 +56,7 @@ pizzaPlaceRouter.patch('/:id', async (req, res) => {
 	const body = req.body
 	body.id = req.params.id
 	const formInput = cleanUserInput(body)
-	try{
+	try {
 		const editedPizzaPlace = await PizzaPlace.query().patchAndFetchById(formInput.id, {
 			name: formInput.name,
 			address: formInput.address,
@@ -66,7 +66,7 @@ pizzaPlaceRouter.patch('/:id', async (req, res) => {
 			imageUrl: formInput.imageUrl
 		})
 		return res.status(200).json({editedPizzaPlace: editedPizzaPlace})
-	}catch(error) {
+	} catch(error) {
 		console.log(error)
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data })

@@ -4,13 +4,14 @@ import ErrorList from './layout/ErrorList.js'
 
 const EditPizzaPlaceForm = ({ pizzaPlace,  pizzaId, pizzaPlacesList, setPizzaPlacesList, setShowEditPlaceForm }) => {
 	const { name, address, phoneNumber, website, hours, imageUrl} = pizzaPlace
+
   const [editedPizzaPlace, setEditedPizzaPlace] = useState({
 		name: name,
 		address: address,
 		phoneNumber: phoneNumber,
-		website: website ?? "",
-		hours: hours ?? "",
-		imageUrl: imageUrl ?? ""
+		website: website || "",
+		hours: hours || "",
+		imageUrl: imageUrl || ""
 	})
 	const [errors, setErrors] = useState({})
 
