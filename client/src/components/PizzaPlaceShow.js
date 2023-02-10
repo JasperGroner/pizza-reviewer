@@ -23,6 +23,7 @@ const PizzaPlaceShow = props => {
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
 			const pizzaData = await response.json()
+			sortReviews(pizzaData.pizzaPlace.reviews)
 			setPizzaPlace(pizzaData.pizzaPlace)
 		} catch(error) {
 			console.error(`Error in fetch: ${error.message}`)
@@ -60,7 +61,18 @@ const PizzaPlaceShow = props => {
 			pizzaPlace={pizzaPlace}
 		/>
 	}
-	  
+	
+	const sortReviews = reviews => {
+		reviews.sort((a, b) => {
+			if (a.voteCount > b.voteCount) {
+				return -1
+			} else if (a.voteCount < b.voteCount) {
+				return 1
+			} 
+			return 0
+		})
+	}
+
 	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
 		return ( 
 			<ReviewItem 
@@ -72,30 +84,36 @@ const PizzaPlaceShow = props => {
         setPizzaPlace={setPizzaPlace}
 			/>
 		)
-	}) 
+	})
 
 	return (
-		<div className="centered-content">
-			<h1>{pizzaPlace.name}</h1>
-			<div className="show-page-flex">
-				<div className="show-page-info">
-					<p>Address: {pizzaPlace.address}</p>
-					<p>Phone Number: {pizzaPlace.phoneNumber}</p>
-					<p>Website: 
-						<a href={pizzaPlace.website} target="_blank"> {pizzaPlace.website}</a>
-					</p>
-					<p>Hours: {pizzaPlace.hours}</p>    
-				</div>
-				<img src={pizzaPlace.imageUrl} className="show-page-image" />
-			</ div>
-			<div>
-				<h2>Reviews</h2>
-				<div className="reviews-list">
-					{reviewItems}
+		<>
+			<div className="pizza-info-background">
+				<div className="centered-content">
+					<h1>{pizzaPlace.name}</h1>
+					<div className="show-page-flex">
+						<div className="show-page-info">
+							<p>Address: {pizzaPlace.address}</p>
+							<p>Phone Number: {pizzaPlace.phoneNumber}</p>
+							<p>Website: 
+								<a href={pizzaPlace.website} target="_blank"> {pizzaPlace.website}</a>
+							</p>
+							<p>Hours: {pizzaPlace.hours}</p>    
+						</div>
+						<img src={pizzaPlace.imageUrl} className="show-page-image" />
+					</div>
 				</div>
 			</div>
-			{newReview}
-		</div>
+			<div className="centered-content">
+				<div>
+					<h2>Reviews</h2>
+					<div className="reviews-list">
+						{reviewItems}
+					</div>
+				</div>
+				{newReview}
+			</div>
+		</>
 	)
 }
 
