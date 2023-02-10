@@ -60,7 +60,16 @@ const PizzaPlaceShow = props => {
 			pizzaPlace={pizzaPlace}
 		/>
 	}
-	  
+	
+	pizzaPlace.reviews.sort((a, b) => {
+		if (a.voteCount > b.voteCount) {
+			return -1
+		} else if (a.voteCount < b.voteCount) {
+			return 1
+		} 
+		return 0
+	})
+
 	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
 		return ( 
 			<ReviewItem 
@@ -72,7 +81,7 @@ const PizzaPlaceShow = props => {
         setPizzaPlace={setPizzaPlace}
 			/>
 		)
-	}) 
+	})
 
 	return (
 		<div className="centered-content">
