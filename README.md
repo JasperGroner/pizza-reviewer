@@ -1,8 +1,8 @@
-Pizza Reviewer
+#Pizza Reviewer
 
 A app to find the best pizza place!
 
-Features: 
+##Features: 
 
   - View pizza places and reviews
 
@@ -16,7 +16,7 @@ Features:
 
   - Upvote and downvote reviews
 
-To set up:
+##To set up:
 
   - Clone the repository
 
@@ -36,7 +36,7 @@ To set up:
 
   - Go to `localhost:3000` in a browser to see the app!
 
-Creators:
+##Creators:
 
 James Young
 
