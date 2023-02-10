@@ -60,7 +60,7 @@ const PizzaPlaceList = (props) => {
 
   return (
     <div className='centered-content'>
-      <h1>Pizza Place List</h1>
+      <h1>Pizza Places For You!</h1>
       <div className="pizza-list">
         {pizzaPlaceReact}
       </div>
