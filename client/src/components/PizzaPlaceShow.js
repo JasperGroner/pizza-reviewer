@@ -23,6 +23,7 @@ const PizzaPlaceShow = props => {
 				throw new Error(`${response.status} (${response.statusText})`)
 			}
 			const pizzaData = await response.json()
+			sortReviews(pizzaData.pizzaPlace.reviews)
 			setPizzaPlace(pizzaData.pizzaPlace)
 		} catch(error) {
 			console.error(`Error in fetch: ${error.message}`)
@@ -61,14 +62,16 @@ const PizzaPlaceShow = props => {
 		/>
 	}
 	
-	pizzaPlace.reviews.sort((a, b) => {
-		if (a.voteCount > b.voteCount) {
-			return -1
-		} else if (a.voteCount < b.voteCount) {
-			return 1
-		} 
-		return 0
-	})
+	const sortReviews = reviews => {
+		reviews.sort((a, b) => {
+			if (a.voteCount > b.voteCount) {
+				return -1
+			} else if (a.voteCount < b.voteCount) {
+				return 1
+			} 
+			return 0
+		})
+	}
 
 	const reviewItems = pizzaPlace.reviews.map(reviewItem => {
 		return ( 
