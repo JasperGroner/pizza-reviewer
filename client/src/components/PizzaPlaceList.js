@@ -62,7 +62,7 @@ const PizzaPlaceList = (props) => {
 
   return (
     <div className='centered-content'>
-      <PizzaBanner slides={SliderData}/>
+      <PizzaBanner slides={SliderData} />
       <h1>Pizza Places For You!</h1>
       <div className="pizza-list">
         {pizzaPlaceReact}
