@@ -54,7 +54,7 @@ class ReviewSeeder {
                 text: "Good place and value for every cent"
             }
         ]
-        for (const review of reviewsData){
+        for (const review of reviewsData) {
             const currentReview = await Review
             .query().findOne({ title: review.title })
             if(!currentReview){

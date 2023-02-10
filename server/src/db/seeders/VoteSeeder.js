@@ -1,7 +1,7 @@
 import { User, Review, Vote } from '../../models/index.js'
 
 class VoteSeeder {
-  static async seed(){
+  static async seed() {
     const user1 = await User.query().findOne({email:"tommyjane@gmail.com" })
     const user2 = await User.query().findOne({email:"annjane@gmail.com" })
     const user3 = await User.query().findOne({email:"marryjane@gmail.com" })
@@ -43,7 +43,7 @@ class VoteSeeder {
       }
     ]
 
-    for (const vote of votingData){
+    for (const vote of votingData) {
       await Vote.query().insert(vote)
     }
   }
