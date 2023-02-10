@@ -140,6 +140,7 @@ h1 {
 
 .vote-button-image {
   height: 2em;
+  border-radius: 5px
 }
 
 .vote-button-image:hover {
@@ -152,4 +153,12 @@ h1 {
 
 .top-bar-margin {
   margin-top: 0.4rem;
+}
+
+.green-background {
+  background-color: $pizza-green;
+}
+
+.red-background {
+  background-color: $pizza-red;
 }

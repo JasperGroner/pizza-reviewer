@@ -32,9 +32,10 @@ pizzaPlaceRouter.post("/", async (req, res) => {
 
 pizzaPlaceRouter.get("/:id", async (req, res) => {
 	const pizzaId = req.params.id
+	const userId = req.user.id
 	try {
 		const pizzaPlace = await PizzaPlace.query().findById(pizzaId)
-		const serializedPizzaPlace = await PizzaPlaceSerializer.getDetail(pizzaPlace)
+		const serializedPizzaPlace = await PizzaPlaceSerializer.getDetail(pizzaPlace, userId)
 		return res.status(200).json({pizzaPlace: serializedPizzaPlace})
 	} catch(error) {
 		return res.status(500).json({errors: error})
