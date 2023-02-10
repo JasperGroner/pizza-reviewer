@@ -7,8 +7,8 @@ const EditReviewForm = ({ reviewId, title, text, rating, setShowEditForm, pizzaP
   
   const [editedReview, setEditedReview] = useState({
     rating: rating,
-    title: title,
-    text: text
+    title: title || "",
+    text: text || ""
   })
 
   const [errors, setErrors] = useState({})
