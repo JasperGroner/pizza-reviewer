@@ -8,6 +8,10 @@ import upPizza from "../assets/uppizza.png"
 const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, voteCount, currentUser, deleteReview, pizzaPlace, setPizzaPlace, image, userVote }) => {
 
   const [showEditForm, setShowEditForm] = useState(false)
+  const [voteDisplay, setVoteDisplay] = useState({
+    upvote: userVote === 1 ? "green-background" : "",
+    downvote: userVote === -1 ? "red-background" : ""
+  })
 
   const pizzaId = useParams().id
 
@@ -40,6 +44,7 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
 		deleteReview(id)
   }
 
+
   const voteOnReview = async (vote) => {
     try {
       const response = await fetch(`/api/v1/pizza-places/${pizzaId}/reviews/${id}/votes/`, {
@@ -60,9 +65,11 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
       } else {
         const body = await response.json()
         const newVoteCount = body.serializedVotes.voteCount
+        const newUserVote = body.serializedVotes.userVote
         const editedReviews = pizzaPlace.reviews
         const updateID = editedReviews.findIndex(element => element.id === id)
-        editedReviews[updateID].voteCount = newVoteCount 
+        editedReviews[updateID].voteCount = newVoteCount
+        updateVoteDisplay(newUserVote)
         setPizzaPlace({
           ...pizzaPlace,
           reviews: editedReviews
@@ -70,6 +77,16 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
       }
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
+    }
+  }
+
+  const updateVoteDisplay = newUserVote => {
+    if (newUserVote ===  1) {
+      setVoteDisplay({upvote: "green-background", downvote: ""})
+    } else if (newUserVote === -1 ) {
+      setVoteDisplay({upvote: "", downvote: "red-background"})
+    } else {
+      setVoteDisplay({upvote: "", downvote: ""})
     }
   }
 
@@ -88,21 +105,13 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
     deleteButton = <input className='button' type='button' value='Delete' onClick={handleDeleteClick}/>
   }
 
-  let upVoteDisplay = ""
-  let downVoteDisplay = ""
-  // if (userVoteCount ===  1) {
-  //   upVoteDisplay = "green-background"
-  // } else if (userVoteCount === -1 ) {
-  //   downVoteDisplay = "red-background"
-  // }
-
   let upvoteButton, downvoteButton
   if (currentUser) {
     upvoteButton = (<button onClick={handleUpvoteClick}>
-      <img src={upPizza} className={`vote-button-image ${upVoteDisplay}`}/>
+      <img src={upPizza} className={`vote-button-image ${voteDisplay.upvote}`}/>
     </button>)
     downvoteButton = (<button onClick={handleDownvoteClick} className="vote-button">
-      <img src={downPizza} className={`vote-button-image ${downVoteDisplay}`}/>
+      <img src={downPizza} className={`vote-button-image ${voteDisplay.downvote}`}/>
     </button>)
   }
 
