@@ -31,9 +31,30 @@ class ReviewSeeder {
                 rating: "4",
                 title: "Best pizza ever have. It make my day!",
                 text: "Good place and value for every cent"
+            },
+            {
+                pizzaPlaceId: boulevard.id,
+                userId: user1.id,
+                rating: "3",
+                title: "Best pizza ever have!",
+                text: "At the round corner of Perfect Square"
+            },
+            {   
+                pizzaPlaceId: boulevard.id,
+                userId: user2.id,
+                rating: "5",
+                title: "Best pizza!",
+                text: "New way to start your meal!"
+            },
+            {   
+                pizzaPlaceId: boulevard.id,
+                userId: user3.id,
+                rating: "4",
+                title: "Best pizza ever have. It make my day!",
+                text: "Good place and value for every cent"
             }
         ]
-        for (const review of reviewsData){
+        for (const review of reviewsData) {
             const currentReview = await Review
             .query().findOne({ title: review.title })
             if(!currentReview){
