@@ -34,7 +34,10 @@ pizzaPlaceRouter.post("/", async (req, res) => {
 
 pizzaPlaceRouter.get("/:id", async (req, res) => {
 	const pizzaId = req.params.id
-	const userId = req.user.id
+	let userId = null
+	if (req.user) {
+		userId = req.user.id
+	}
 	try {
 		const pizzaPlace = await PizzaPlace.query().findById(pizzaId)
 		const serializedPizzaPlace = await PizzaPlaceSerializer.getDetail(pizzaPlace, userId)
