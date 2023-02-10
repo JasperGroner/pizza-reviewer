@@ -34,7 +34,6 @@ const EditReviewForm = ({ reviewId, title, text, rating, setShowEditForm, pizzaP
         }
       } else {
         const body = await response.json()
-        console.log(body)
         return body.editedReview
       }
     } catch(error) {
