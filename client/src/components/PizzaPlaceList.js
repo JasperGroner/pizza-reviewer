@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import PizzaPlaceListItem from './PizzaPlaceListItem.js'
 import { Link } from 'react-router-dom'
+import { SliderData } from "./SliderData";
+import PizzaBanner from "./PizzaBanner";
 
 const PizzaPlaceList = (props) => {
   const currentUser = props.currentUser
@@ -59,14 +61,16 @@ const PizzaPlaceList = (props) => {
   }
 
   return (
-    <div className='centered-content'>
-      <h1>Pizza Places For You!</h1>
-      <div className="pizza-list">
-        {pizzaPlaceReact}
+    <>
+      <PizzaBanner slides={SliderData} />
+      <div className='centered-content'>
+        <h1>Pizza Places For You!</h1>
+        <div className="pizza-list">
+          {pizzaPlaceReact}
+        </div>
+        {link}
       </div>
-      {link}
-    </div>
-
+    </>
   )
 }
 

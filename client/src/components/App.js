@@ -8,10 +8,12 @@ import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 
+
 import PizzaPlaceList from "./PizzaPlaceList.js";
 import PizzaPlaceShow from "./PizzaPlaceShow.js";
 import NewPizzaPlaceForm from "./NewPizzaPlaceForm.js";
 import ChangeUserImage from "./uploads/ChangeUserImage"
+
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -31,6 +33,7 @@ const App = (props) => {
   return (
     <Router>
       <TopBar user={currentUser} />
+   
       <Switch>
         <Route
           exact path={["/", "/pizza-places"]} 
