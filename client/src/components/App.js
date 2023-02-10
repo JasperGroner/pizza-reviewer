@@ -31,7 +31,7 @@ const App = (props) => {
   return (
     <Router>
       <TopBar user={currentUser} />
-   
+
       <Switch>
         <Route
           exact path={["/", "/pizza-places"]} 
