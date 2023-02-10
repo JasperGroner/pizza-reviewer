@@ -164,12 +164,13 @@ const RegistrationForm = () => {
             <FormError error={errors.passwordConfirmation} />
           </label>
 
+          <UploadUserImage 
+            setUserPayload={setUserPayload}
+            userPayload={userPayload}
+          />
+
           <input type="submit" className="button" value="Register" />
       </form>
-      <UploadUserImage 
-        setUserPayload={setUserPayload}
-        userPayload={userPayload}
-      />
     </div>
   );
 };
