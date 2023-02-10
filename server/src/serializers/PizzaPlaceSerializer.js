@@ -4,7 +4,7 @@ import ReviewSerialzer from "./ReviewSerializer.js";
 class PizzaPlaceSerializer extends Serializer {
 	static getSummary(pizzaPlaces) {
 		const serializedPizzaPlaces = pizzaPlaces.map(pizzaPlace => {
-		   return this.serialize(pizzaPlace, ["id", "name", "imageUrl"])
+		   return this.serialize(pizzaPlace, ["id", "name", "imageUrl", "address", "phoneNumber", "website", "hours", "userId"])
 		})
 		return serializedPizzaPlaces
 	}

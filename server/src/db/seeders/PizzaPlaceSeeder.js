@@ -1,7 +1,10 @@
-import { PizzaPlace } from "../../models/index.js"
+import { PizzaPlace, User } from "../../models/index.js"
 
 class PizzaPlaceSeeder {
 	static async seed() {
+
+		const user1 = await User.query().findOne({email:"marryjane@gmail.com" })
+
 		const pizzaPlacesData = [
 			{ 
 				name: "Venice Italian Kitchen",
@@ -9,7 +12,8 @@ class PizzaPlaceSeeder {
 				phoneNumber: "781-777-1719",
 				website: "https://www.venicepizzaarlington.com/", 
 				hours: "M-Sa, 11:00AM-10:00PM, Su, 11:00AM-9:00PM",
-				imageUrl: "https://venicepizzaarlington.com/img/logo.png"
+				imageUrl: "https://venicepizzaarlington.com/img/logo.png",
+				userId: user1.id
 			},
 			{
 				name: "Boulevard Pizza", 
@@ -17,7 +21,8 @@ class PizzaPlaceSeeder {
 				phoneNumber: "508-699-4449", 
 				website: "https://boulevardpizzana.com/", 
 				hours: "M-Sa, 11:00AM-9:30PM",
-				imageUrl: "https://boulevardpizzana.com/fts-content/uploads/sites/192/2020/10/BLVD-PIZZA-LOGO.png"
+				imageUrl: "https://boulevardpizzana.com/fts-content/uploads/sites/192/2020/10/BLVD-PIZZA-LOGO.png",
+				userId: user1.id
 			}
 		]
 		for (const pizzaPlaceSeed of pizzaPlacesData) {
