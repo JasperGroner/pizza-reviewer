@@ -6,9 +6,9 @@ class VoteSeeder {
     const user2 = await User.query().findOne({email:"annjane@gmail.com" })
     const user3 = await User.query().findOne({email:"marryjane@gmail.com" })
 
-    const review1 = await Review.query().findOne({title: "Best pizza ever have!"})
+    const review1 = await Review.query().findOne({title: "Best pizza I've ever had!"})
     const review2 = await Review.query().findOne({title: "Best pizza!"})
-    const review3 = await Review.query().findOne({title: "Best pizza ever have. It make my day!"})
+    const review3 = await Review.query().findOne({title: "YUM!"})
 
     const votingData = [
       {
