@@ -107,15 +107,16 @@ const ReviewItem = ({ title, rating, text, id, userId, firstName, lastName, vote
 
   let upvoteButton, downvoteButton
   if (currentUser) {
-    upvoteButton = (<button onClick={handleUpvoteClick}>
+    upvoteButton = (<button onClick={handleUpvoteClick} className="vote-button">
       <img src={upPizza} className={`vote-button-image ${voteDisplay.upvote}`}/>
     </button>)
     downvoteButton = (<button onClick={handleDownvoteClick} className="vote-button">
       <img src={downPizza} className={`vote-button-image ${voteDisplay.downvote}`}/>
     </button>)
+  } else {
+    upvoteButton = <img src={upPizza} className={`vote-button-image ${voteDisplay.upvote}`}/>
+    downvoteButton = <img src={downPizza} className={`vote-button-image ${voteDisplay.downvote}`}/>
   }
-
-
 
   return (
     <div className="review-tile">

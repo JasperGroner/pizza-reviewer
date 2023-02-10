@@ -14,6 +14,11 @@ const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, set
 		setShowEditPlaceForm(showEditPlaceForm ? false : true)
 	}
 
+	let pizzaImage
+	if (pizzaPlace.imageUrl) {
+		pizzaImage = <img className="list-logo" src={pizzaPlace.imageUrl} alt="restaurant logo"/>
+	}
+
 	let editForm
 	if (showEditPlaceForm) {
 		editForm = <EditPizzaPlaceForm 
@@ -33,8 +38,8 @@ const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, set
 
 	return (
 		<div className="pizza-place-tile">
-			<img className="list-logo" src={pizzaPlace.imageUrl} alt="restaurant logo"/>
-				<Link to={`/pizza-places/${pizzaPlace.id}/`}>{pizzaPlace.name}</Link>
+			{pizzaImage}
+			<Link to={`/pizza-places/${pizzaPlace.id}/`}>{pizzaPlace.name}</Link><br />
 			{editButton}
 			{deleteButton}
 			{editForm}

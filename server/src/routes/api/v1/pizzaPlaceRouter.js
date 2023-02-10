@@ -22,7 +22,9 @@ pizzaPlaceRouter.post("/", async (req, res) => {
 	body.userId = req.user.id
 	const formInput = cleanUserInput(body)
 	try {
+		console.log("hi")
 		const newPizzaPlace = await PizzaPlace.query().insertAndFetch(formInput)
+		console.log("hi")
 		return res.status(201).json({ newPizzaPlace })
 	} catch(error) {
 		if(error instanceof ValidationError) {
