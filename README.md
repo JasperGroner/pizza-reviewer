@@ -30,7 +30,7 @@ A app to find the best pizza place!
 
     * `yarn migrate:latest`
 
-    * `yarn created:db`
+    * `yarn db:seed`
 
   - Navigate to the app root directory and run `yarn dev`
 
