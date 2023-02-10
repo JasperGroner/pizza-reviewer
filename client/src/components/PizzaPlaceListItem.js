@@ -32,11 +32,9 @@ const PizzaPlaceListItem = ({ pizzaPlace, deletePizzaPlace, pizzaPlacesList, set
   }
 
 	return (
-		<div>
-			<li className="pizza-list-item"> 
-				<img className="list-logo" src={pizzaPlace.imageUrl} alt="restaurant logo"/>
+		<div className="pizza-place-tile">
+			<img className="list-logo" src={pizzaPlace.imageUrl} alt="restaurant logo"/>
 				<Link to={`/pizza-places/${pizzaPlace.id}/`}>{pizzaPlace.name}</Link>
-			</li>
 			{editButton}
 			{deleteButton}
 			{editForm}
