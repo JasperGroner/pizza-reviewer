@@ -153,3 +153,50 @@ h1 {
 .top-bar-margin {
   margin-top: 0.4rem;
 }
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: $pizza-orange;
+  z-index: 10;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: $pizza-orange;
+  z-index: 10;
+  user-select: none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.00);
+}
+
+.slider{
+  background-color: white;
+  height: max-content;
+  width: 100%;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image {
+  object-fit:cover;
+  width: 100%;
+  height: 600px;
+}

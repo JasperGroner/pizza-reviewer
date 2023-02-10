@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import PizzaPlaceListItem from './PizzaPlaceListItem.js'
 import { Link } from 'react-router-dom'
+import { SliderData } from "./SliderData";
+import PizzaBanner from "./PizzaBanner";
 
 const PizzaPlaceList = (props) => {
   const [pizzaPlacesList, setPizzaPlacesList] = useState([])
@@ -29,12 +31,15 @@ const PizzaPlaceList = (props) => {
   })
 
   return (
-    <div className='centered-content'>
-      <h1>Pizza Place List</h1>
-      <div className="pizza-list">
-        {pizzaPlaceReact}
+    <div>
+      <PizzaBanner slides={SliderData}/>
+      <div className='centered-content'>
+        <h1>Pizza Place List</h1>
+        <div className="pizza-list">
+          {pizzaPlaceReact}
+        </div>
+        <Link to='/pizza-places/new'> Add New Pizza Place </Link>
       </div>
-      <Link to='/pizza-places/new'> Add New Pizza Place </Link>
     </div>
 
   )
