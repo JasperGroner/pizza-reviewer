@@ -6,7 +6,7 @@ import pizzaImage5 from '../assets/images/pizzaImage5.jpeg'
 
 export const SliderData = [
   {
-    image: pizzaImage5
+    image: pizzaImage1
   },
   {
     image: pizzaImage2

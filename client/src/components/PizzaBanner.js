@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { SliderData } from './SliderData';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
-import pizzaImage5 from '../assets/images/pizzaImage5.jpeg'
 
 const PizzaBanner = ({ slides }) => {
   const [current, setCurrent] = useState(0)
@@ -18,8 +17,8 @@ const PizzaBanner = ({ slides }) => {
   if (!Array.isArray(slides) || slides.length <= 0) {
     return null;
   }
-
-
+  // why not to use && for conditional rendering
+  // https://medium.com/geekculture/stop-using-for-conditional-rendering-in-react-a0f7b96200f8
   return (
     <>
     <div className='slider'>
@@ -28,7 +27,7 @@ const PizzaBanner = ({ slides }) => {
       {SliderData.map((slide, index) => {
         return (
           <div className={index === current ? "slide active" : "slide"} key={index}>
-            {index === current && (<img src={slide.image} alt="pizzaImage"  className='image' />)}
+            {index === current ? (<img src={slide.image} alt="pizzaImage"  className='image' />) : null}
           </div>
         )
       })
