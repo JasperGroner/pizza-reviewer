@@ -1,5 +1,5 @@
 import express from "express"
-import { PizzaPlace, Review } from "../../../models/index.js"
+import { PizzaPlace } from "../../../models/index.js"
 import PizzaPlaceSerializer from "../../../serializers/PizzaPlaceSerializer.js"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import { ValidationError } from "objection"
@@ -22,9 +22,7 @@ pizzaPlaceRouter.post("/", async (req, res) => {
 	body.userId = req.user.id
 	const formInput = cleanUserInput(body)
 	try {
-		console.log("hi")
 		const newPizzaPlace = await PizzaPlace.query().insertAndFetch(formInput)
-		console.log("hi")
 		return res.status(201).json({ newPizzaPlace })
 	} catch(error) {
 		if(error instanceof ValidationError) {
